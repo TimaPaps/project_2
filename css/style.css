@@ -1,0 +1,12 @@
+.item {
+    width: 200px;
+    text-align: center;
+}
+
+.item-photo img{
+    width: 100%;
+}
+
+.flex-box {
+    display: flex;
+}
