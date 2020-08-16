@@ -13,18 +13,18 @@
 ?>
 
 <!--создание карточки товара-->
-<div class="flex-box">
+<div class="flex-box flex-wrap">
     <?php while($row = mysqli_fetch_assoc($result)): ?>
-        <div class="item">
+        <div class="item padding-30">
             <div class="item-photo">
                 <img src="<?= $row['photo'] ?>">
             </div>
-            <div>
+            <div class="padding-10">
                 <b>
                     <?= $row['title'] ?>
                 </b>            
             </div>
-            <div>
+            <div class="padding-10">
                 <?= $row['price'] ?> руб.
             </div>
         </div>   

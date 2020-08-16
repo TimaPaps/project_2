@@ -1,7 +1,10 @@
-<!--подключение файла стилей-->
-<link rel="stylesheet" href="/css/style.css">
+<?php
+    include($_SERVER['DOCUMENT_ROOT'] . '/inc/head_doctype.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/inc/header.php');
+?>
 
-<div id="catalog"></div>
+<div id="catalog" class="wrapper"></div>
 
-<!--подключение файла javascript-->
-<script src="/js/script.js"></script>
+<?php
+    include($_SERVER['DOCUMENT_ROOT'] . '/inc/footer.php');
+?>
