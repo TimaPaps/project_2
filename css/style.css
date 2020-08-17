@@ -22,6 +22,18 @@
 .margin-left-30 {
     margin-left: 30px;
 }
+.margin-top-30 {
+    margin-top: 30px;
+}
+.margin-top-40 {
+    margin-top: 40px;
+}
+.margin-top-60 {
+    margin-top: 60px;
+}
+.margin-top-100 {
+    margin-top: 100px;
+}
 .align-items-center {
     align-items: center;
 }
@@ -29,6 +41,22 @@
     width: 100%;
     justify-content: space-between;
     color: black;
+}
+.text-align-center {
+    text-align: center;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.btn-10-30 {
+    padding: 10px 30px;
+    border: 1px solid black;
+    display: inline-block;  
+    cursor: pointer; 
+}
+.border-1px {
+    border: 1px solid black;
+    display: inline-block;   
 }
 
 /*блок header*/
@@ -59,6 +87,52 @@
     text-decoration: none;
     color: black;
     cursor: pointer;
+}
+
+/*блок главная страница*/
+[type="email"],
+[type="submit"] {
+    border: none;
+    padding: 10px;
+}
+[type="submit"] {
+    background: orange;
+    cursor: pointer;
+}
+.main-item {
+    width: 25%;
+}
+.main-photo-rectangle {
+    width: 100%;
+    min-height: 750px;
+}
+.main-photo-square {
+    width: 100%;
+    min-height: 375px;
+}
+.main-photo-1 {
+    background: url(/img/main/1.jpg) center center / cover no-repeat;
+}
+.main-photo-2 {
+    background: url(/img/main/2.jpg) center center / cover no-repeat;
+}
+.main-photo-3 {
+    background: url(/img/main/3.jpg) center center / cover no-repeat;
+}
+.main-photo-4 {
+    background: url(/img/main/4.jpg) center center / cover no-repeat;
+}
+.main-photo-5 {
+    background: url(/img/main/5.jpg) center center / cover no-repeat;
+}
+.main-photo-6 {
+    background: url(/img/main/6.jpg) center center / cover no-repeat;
+}
+.main-background-light-gray {
+    background: rgb(179, 179, 179);
+}
+.main-background-gray {
+    background: gray
 }
 
 /*блок каталог товаров*/
