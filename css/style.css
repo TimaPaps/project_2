@@ -99,9 +99,22 @@
     background: orange;
     cursor: pointer;
 }
+/*
 .main-item {
     width: 25%;
 }
+*/
+.main-article {
+    width: 25%;
+    height: 300px;
+    background: gray center center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+/*
 .main-photo-rectangle {
     width: 100%;
     min-height: 750px;
@@ -134,13 +147,14 @@
 .main-background-gray {
     background: gray
 }
+*/
 
 /*блок каталог товаров*/
 .item {
     width: 25%;
     text-align: center;
 }
-.item-photo img{
+.item-photo img {
     width: 100%;
     height: 300px;
     padding-top: 20px;
