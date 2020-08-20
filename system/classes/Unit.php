@@ -1,5 +1,5 @@
 <?php
-abstract class Unit {
+abstract class Unit implements UnitActions{
     //создание переменных
     private $id;
     private $data; //переменная для кэширования
@@ -16,6 +16,25 @@ abstract class Unit {
         $this->id = $id;
     }
 */
+
+/*//геттер и сеттер позволяют получить и перезаписать private свойства
+    /* данный пример работает с:
+                    $article->id
+                    $article->id = 5;
+                    после создания экземпляра класса в index.php*/
+/*
+    //геттер получает значение private 
+    public function __get($name) {
+        echo "получение доступа к private свойствам<br>";
+        return $this->$name;
+    }
+    //сеттер
+    public function __set($name, $value) {
+        echo "попытка изменить private свойства";
+        $this->$name = $value;
+    }
+*/
+
 
     //универсальный метод для выбора нужной таблицы из DB
     function getTable($table) {

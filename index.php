@@ -1,7 +1,9 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Connect.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/UnitActions.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Unit.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/ShowArticleInfo.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Article.php');
 
 /*
@@ -29,6 +31,8 @@ $result = (new Article())->getElements();
                     $article = new Article($row['id']);
                     //добавляем $row['id'] в аргумент при создании экземпляра класса Article используя в index.php метод public function __construct($id) и убираем строку $article->getId($row['id']);
                     //убираем строку используя переопределение метода setTable из Unit в Article   $article->getTable('core_articles');  ////вызов метода с пробросом названия нужной таблицы в класс Unit с универсальным методом для выбора нужной таблицы из DB
+                    /*$article->id;
+                    $article->id = 5;*/
 
 /* если класс родитель Unit не абстрастный, то можно используя его самого вывести данные, т.е. можно создать экземпляр класса
     если он абстрактный, то создать экземпляр класса нельзя
