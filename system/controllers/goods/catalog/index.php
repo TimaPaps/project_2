@@ -1,18 +1,18 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Connect.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Unit.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Good.php');
-//подключение файла единожды для подключения к DB
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
 
+/*
 //формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB)
-    $result = mysqli_query($link, "SELECT * FROM `core_goods`");
+    $connect = new Connect();
+    $result = mysqli_query($connect->getConnection(), "SELECT * FROM `core_articles`");
+*/
 
-//проверка подключения
-    //var_dump($result);
+//формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB используя метод getElements из Unit.php)
+    $result = (new Good())->getElements();
 
-//закрытие соединения 
-    mysqli_close($link);
-    
     include($_SERVER['DOCUMENT_ROOT'] . '/inc/head_doctype.php');
 ?>
 
@@ -20,8 +20,8 @@
 <div class="flex-box flex-wrap">
     <?php while($row = mysqli_fetch_assoc($result)): ?>
         <?php
-            $good = new Good();
-            $good->getId($row['id']);
+            $good = new Good($row['id']);
+            //добавляем $row['id'] в аргумент при создании экземпляра класса Article используя в index.php метод public function __construct($id) и убираем строку $good->getId($row['id']);
             //убираем строку используя переопределение метода setTable из Unit в Article   $good->getTable('core_goods'); //вызов метода с пробросом названия нужной таблицы в класс Unit с универсальным методом для выбора нужной таблицы из DB
         ?>
         <div class="item padding-30">

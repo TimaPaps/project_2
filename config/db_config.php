@@ -1,4 +1,16 @@
+
 <?php
+//создание констант
+    const DB_HOST = 'localhost';
+    const DB_USER = 'root';
+    const DB_PASS = '';
+    const DB_NAME = 'eshop';
+?>
+
+
+
+<?php
+/*
 //подключение к DB
     const DB_HOST = 'localhost';
     const DB_USER = 'root';
@@ -23,6 +35,7 @@
     */
 
 //кодировка для общения с DB
-    mysqli_set_charset($link, 'utf8'); 
+    /*mysqli_set_charset($link, 'utf8'); 
     //print_r($link);
+    */
 ?>
