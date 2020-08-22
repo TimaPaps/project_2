@@ -1,6 +1,8 @@
 <?php
+namespace Project\Core;
+
 //без метода getInfo
-class Good extends Unit {
+class Good extends \Project\Core\Unit {
     //переопределение метода
     function setTable() {
         return 'core_goods';

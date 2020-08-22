@@ -15,7 +15,7 @@
 */
 
 //формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB используя метод getElements из Unit.php)
-$result = (new Article())->getElements();
+$result = (new \Project\Core\Article())->getElements();
 
     include($_SERVER['DOCUMENT_ROOT'] . '/inc/head_doctype.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/inc/header.php');
@@ -30,7 +30,7 @@ $result = (new Article())->getElements();
         <div class="flex-box flex-wrap margin-top-30">
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <?php
-                    $article = new Article($row['id']);
+                    $article = new \Project\Core\Article($row['id']);
                     //добавляем $row['id'] в аргумент при создании экземпляра класса Article используя в index.php метод public function __construct($id) и убираем строку $article->getId($row['id']);
                     //убираем строку используя переопределение метода setTable из Unit в Article   $article->getTable('core_articles');  ////вызов метода с пробросом названия нужной таблицы в класс Unit с универсальным методом для выбора нужной таблицы из DB
                     /*$article->id;

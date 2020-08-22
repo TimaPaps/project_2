@@ -1,4 +1,6 @@
 <?php
+namespace Project\Core;
+
 class Connect {
     //вызывается автоматически при создании экземпляра класса
     public function __construct() {

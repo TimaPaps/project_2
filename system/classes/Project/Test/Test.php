@@ -1,4 +1,6 @@
 <?php
+namespace Project\Test;
+
 //создание класса Test
 class Test {
     //создание свойств - видимость public - видно везде (модификатор доступа)

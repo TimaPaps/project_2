@@ -12,22 +12,22 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Decathlete.php');
 */
 
-    $sprinter = new Sprinter();
+    $sprinter = new \Project\Test\Sprinter();
     $sprinter->sprinting();
 
     echo '<br>';
 
-    $jumper = new Jumper();
+    $jumper = new \Project\Test\Jumper();
     $jumper->jump();
 
     echo '<br>';
 
-    $thrower = new Thrower();
+    $thrower = new \Project\Test\Thrower();
     $thrower->throw();
 
     echo '<br>';
 
-    $decathlete = new Decathlete();
+    $decathlete = new \Project\Test\Decathlete();
     $decathlete->sprinting();
     echo '<br>';
     $decathlete->jump();

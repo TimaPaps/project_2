@@ -1,5 +1,7 @@
 <?php
-abstract class Unit implements UnitActions {
+namespace Project\Core;
+
+abstract class Unit implements \Project\Interfaces\UnitActions {
     //создание переменных
     private $id;
     private $data; //переменная для кэширования
@@ -47,7 +49,7 @@ abstract class Unit implements UnitActions {
     }
 
     public function getElements() {
-        $connect = new Connect();
+        $connect = new \Project\Core\Connect();
         $result = mysqli_query($connect->getConnection(), "SELECT * FROM ". $this->setTable());
         return $result;
     }

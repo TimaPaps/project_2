@@ -1,5 +1,7 @@
 <?php
-class Article extends Unit implements ShowArticleInfo {
+namespace Project\Core;
+
+class Article extends \Project\Core\Unit implements \Project\Interfaces\ShowArticleInfo {
     //переопределение метода
     function setTable() {
         return 'core_articles';
