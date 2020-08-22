@@ -1,5 +1,5 @@
 <?php
-abstract class Unit implements UnitActions{
+abstract class Unit implements UnitActions {
     //создание переменных
     private $id;
     private $data; //переменная для кэширования

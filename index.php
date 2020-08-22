@@ -1,11 +1,13 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
+/*
     require_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Connect.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/UnitActions.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Unit.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/ShowArticleInfo.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Article.php');
-
+*/
 /*
 //формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB)
     $connect = new Connect();
