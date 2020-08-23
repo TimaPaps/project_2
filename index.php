@@ -17,14 +17,14 @@
 //формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB используя метод getElements из Unit.php)
 $result = (new \Project\Core\Article())->getElements();
 
-    include($_SERVER['DOCUMENT_ROOT'] . '/inc/head_doctype.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 ?>
 <body>
     <main class="wrapper">
         <div class="text-align-center margin-top-60">
-            <h1>НОВЫЕ ПОСТУПЛЕНИЯ ВЕСНЫ</h1>
-            <p>Мы подготовили для Вас лучшие новинки сезона</p>
+            <h1 class="text-up">Новые поступления весны</h1>
+            <p class="text-i">Мы подготовили для Вас лучшие новинки сезона</p>
             <p class="btn-10-30 margin-top-40">посмотреть новинки</p>
         </div>
         <div class="flex-box flex-wrap margin-top-30">
@@ -98,16 +98,16 @@ $result = (new \Project\Core\Article())->getElements();
         </div>-->
         <div class="text-align-center margin-top-100">
             <h2>БУДЬ ВСЕГДА В КУРСЕ ВЫГОДНЫХ ПРЕДЛОЖЕНИЙ</h2>
-            <p>подписывайся и следи за новинками и выгодными предложениями.</p>
+            <p class="text-i">подписывайся и следи за новинками и выгодными предложениями.</p>
         </div>
         <div class="flex-box justify-content-center margin-top-40">
             <form action="" method="POST" class="border-1px">
-                <input type="email" name="email" id="" placeholder="e-mail">
+                <input class="text-i" type="email" name="email" id="" placeholder="e-mail">
                 <input type="submit" value="записаться">
             </form>
         </div>
         <p class="text-align-center">Некорректный e-mail. Попробуйте еще раз.</p>
     </main>
 <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/inc/footer.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
 ?>

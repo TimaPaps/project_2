@@ -1,9 +1,9 @@
-        <footer class="wrapper flex-box footer-nav space-between">
+<footer class="wrapper flex-box footer-nav space-between">
             <div class="padding-30">
                 <h3>КОЛЛЕКЦИИ</h3>
-                <a href="#">Женщинам</a>
-                <a href="#">Мужчинам</a>
-                <a href="#">Детям</a>
+                <a href="catalog.php?category_id=1">Женщинам</a>
+                <a href="catalog.php?category_id=2">Мужчинам</a>
+                <a href="catalog.php?category_id=3">Детям</a>
                 <a href="#">Новинки</a>
             </div>
             <div class="padding-30">

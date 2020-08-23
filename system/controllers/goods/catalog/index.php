@@ -16,7 +16,7 @@
 //формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB используя метод getElements из Unit.php)
     $result = (new \Project\Core\Good())->getElements();
 
-    include($_SERVER['DOCUMENT_ROOT'] . '/inc/head_doctype.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
 ?>
 
 <!--создание карточки товара-->

@@ -2,9 +2,9 @@
     <div class="flex-box align-items-center">
         <a href="index.php" class="header-logo"></a>
         <div class="header-nav margin-left-30">
-            <a href="catalog.php?category_id=1">Женщинам</a>
-            <a href="catalog.php?category_id=2">Мужчинам</a>
-            <a href="catalog.php?category_id=3">Детям</a>
+            <a class="<? if(isset($_GET['category_id']) && $_GET['category_id'] == 1) { ?> is-bold <? } ?>" href="catalog.php?category_id=1">Женщинам</a>
+            <a class="<? if(isset($_GET['category_id']) && $_GET['category_id'] == 2) { ?> is-bold <? } ?>" href="catalog.php?category_id=2">Мужчинам</a>
+            <a class="<? if(isset($_GET['category_id']) && $_GET['category_id'] == 3) { ?> is-bold <? } ?>" href="catalog.php?category_id=3">Детям</a>
             <a href="#">Новинки</a>
             <a href="#">О нас</a>
         </div>
