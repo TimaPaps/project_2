@@ -18,7 +18,7 @@
 $result = (new \Project\Core\Article())->getElements();
 
     include($_SERVER['DOCUMENT_ROOT'] . '/inc/head_doctype.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/inc/header.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 ?>
 <body>
     <main class="wrapper">

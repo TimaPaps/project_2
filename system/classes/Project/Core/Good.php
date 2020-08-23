@@ -16,6 +16,20 @@ class Good extends \Project\Core\Unit {
     function photo() {
         return $this->getField('photo');
     }
+    
+    //переопределение метода getElement из Unit
+    public function getElements() {
+        $connect = new \Project\Core\Connect();
+        $filter = ''; //убираем Notice: Undefined variable: filter in ...
+        if(isset($_GET['category_id']) && $category_id = $_GET['category_id']) { //isset($_GET['category_id']) --- убирает Notice: Undefined index: category_id in ...
+            $filter = " WHERE category_id=$category_id ";
+        }
+        //echo "SELECT * FROM ". $this->setTable() . " $filter ";
+        //echo $_GET['category_id'];
+        //var_dump($_GET);
+        $result = mysqli_query($connect->getConnection(), "SELECT * FROM ". $this->setTable() . "$filter");
+        return $result;
+    }
 }
 
 

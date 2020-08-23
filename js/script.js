@@ -1,9 +1,15 @@
-
 function renderGoods() {
     // создание нового экземпляра класса для запросов
     let xhr = new XMLHttpRequest();
+
+    //формирование url
+    let url = 'http://project_2/system/controllers/goods/catalog/index.php';
+    let str_get = window.location.search;
+    url = url + str_get;
+    console.log(url);
+
     //запуск метода open() для установки параметров запроса (метод GET, куда - HTTP....., если true - то запрос асинхронный, иначе запрос синхронный)
-    xhr.open('GET', 'http://project_2/system/controllers/goods/catalog/index.php', true);
+    xhr.open('GET', url, true);
     //задание заголовков для http запроса (application/x-form-urlencode - для отправки из формы)
     xhr.setRequestHeader('content-type', 'application/x-form-urlencode');
 
