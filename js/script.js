@@ -32,3 +32,9 @@ document.getElementById('catalog').innerHTML = '<img src="/img/preloader.gif"/>'
 setTimeout(function() {
     renderGoods();
 }, 1000);
+
+//выпадающие фильтры товаров
+/*let click = document.getElementsByClassName('categories-heading');
+click.click(function() {
+    slideToggle(400);
+});*/

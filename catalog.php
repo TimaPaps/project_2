@@ -27,15 +27,43 @@
     //var_dump($_GET);
 ?>
 
-<div class="wrapper nav margin-left-30 text-up text-12px"><a class="text-12" href="index.php">Главная</a> / <a  href="catalog.php">Каталог</a> / <?= $cat_name ?></div>
+<div class="wrapper nav padding-30 text-up text-12px"><a class="text-12" href="index.php">Главная</a> / <a  href="catalog.php">Каталог</a> / <?= $cat_name ?></div>
 <div class="wrapper text-align-center">
     <h1 class="text-up"><?= $cat_name ?></h1>
     <p class="text-i">Все товары</p>
     <?//var_dump($_GET);?>
     <div class="flex-box justify-content-center text-i">
+        <div class="categories padding-10">
+          
+                <div class="categories-heading">Категории</div>
+                <div class="categories-nav">
+                    <ul>
+                        <li>
+                            <a href="?type_id=1 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Куртки</a>
+                        </li>
+                        <li>
+                            <a href="?type_id=2 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Джинсы</a>
+                        </li>
+                        <li>
+                            <a href="?type_id=3 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Обувь</a>
+                        </li>
+                    </ul>
+                </div>
+            
+        </div>
+        <div class="padding-10">
+            <div>Размер</div>
+            <div></div>
+        </div>
+        <div class="padding-10">
+            <div>Стоимость</div>
+            <div></div>
+        </div>
+<!--    
         <div class="padding-10">Категория</div>
         <div class="padding-10">Размер</div>
         <div class="padding-10">Стоимость</div>
+-->
     </div>
 </div>
 <!--подгрузка товаров-->
@@ -48,14 +76,21 @@
 
         //фильтрация по категориям
         $category_str = '';  //вспомогательная строка для категории чтобы при клике в ячейки пагинации не выкидывало на - Все товары
+        $type_str = '';  //вспомогательная строка для типов
         $filter = ''; //убираем Notice: Undefined variable: filter in ...
         if (isset($_GET['category_id']) && $category_id = $_GET['category_id']) { //isset($_GET['category_id']) --- убирает Notice: Undefined index: category_id in ...
-            $filter = " WHERE category_id=$category_id";
+            $filter .= " AND category_id=$category_id";
             $category_str = "&category_id=$category_id";
+        }
+
+        //фильтрация по типу товара
+        if (isset($_GET['type_id']) && $type_id = $_GET['type_id']) {
+            $filter .= " AND type_id=$type_id";
+            $type_str = "&type_id=$type_id";
         }
         
         //запрос к DB с подсчетом количества id и записью в переменную num
-        $result = mysqli_query($connect->getConnection(), "SELECT COUNT(id) as num FROM core_goods $filter" );
+        $result = mysqli_query($connect->getConnection(), "SELECT COUNT(id) as num FROM core_goods WHERE id>0 $filter" );
         //создание ассоциативного массива с данными из DB
         $info = mysqli_fetch_assoc($result);
         //в переменную помещаем данные из массива с ключом num
@@ -70,8 +105,8 @@
         }
     ?>
     <?php for ($i = 1; $i <= $pages_amount; $i++): ?>
-    <div class="amount padding-10<? if($i == $page) { ?> page-active nav<? } ?>">
-        <a href="?page=<?= $i ?><?= $category_str ?>">
+    <div class="amount padding-10 nav-white<? if($i == $page) { ?> page-active nav <? } ?>">
+        <a href="?page=<?= $i ?><?= $category_str ?><?= $type_str ?>">
             <?= $i ?>    
         </a>
         </div>

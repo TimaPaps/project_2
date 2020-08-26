@@ -71,15 +71,18 @@
     border: 1px solid black;
     display: inline-block;   
 }
+.nav-white a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
 .nav a {
     text-decoration: none;
     color: black;
     cursor: pointer;
 }
-.nav-white a {
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
+.display-none {
+    display: none;
 }
 
 /*блок header*/
@@ -129,7 +132,7 @@
 */
 .main-article {
     width: 25%;
-    height: 300px;
+    height: 400px;
     background: gray center center / cover;
     display: flex;
     align-items: center;
@@ -173,17 +176,23 @@
 */
 
 /*блок каталог товаров*/
+/*.categories-heading {
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}*/
+
 .item {
     width: 25%;
     text-align: center;
 }
 .item-photo img {
     width: 100%;
-    height: 300px;
+    height: 400px;
     padding-top: 20px;
     padding-bottom: 20px;
     box-sizing: border-box;
 }
+
 .pagination > div {
     border: 1px solid black;    
     height: 35px;
