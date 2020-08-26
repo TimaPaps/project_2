@@ -61,7 +61,7 @@ $result = (new \Project\Core\Article())->getElements();
         
         <!--<div class="flex-box flex-wrap margin-top-30">
             ?php while($row = mysqli_fetch_assoc($result)): ?>
-                <div class="main-article" style="background-image: url('<?= $row['photo'] ?>')">
+                <div class="main-article" style="background-image: url('?= $row['photo'] ?>')">
                     <div>
                         <div class="padding-10">
                             <b>

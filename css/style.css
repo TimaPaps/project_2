@@ -76,6 +76,11 @@
     color: black;
     cursor: pointer;
 }
+.nav-white a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
 
 /*блок header*/
 .header-logo {
@@ -178,6 +183,21 @@
     padding-top: 20px;
     padding-bottom: 20px;
     box-sizing: border-box;
+}
+.pagination > div {
+    border: 1px solid black;    
+    height: 35px;
+    width: 35px;
+    background: black;
+}
+.pagination > .page-active {
+    background: white;
+    color: black;
+}
+.amount {
+    text-align: center;
+    margin: 5px;
+    font-size: 14px;
 }
 
 /*блок footer*/

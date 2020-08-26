@@ -43,7 +43,6 @@
     <?php endwhile; ?>
 </div>
 
-
 <!--создание карточки товара-->
 <!--<div class="flex-box flex-wrap">
     ?php while($row = mysqli_fetch_assoc($result)): ?>

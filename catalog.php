@@ -38,14 +38,53 @@
         <div class="padding-10">Стоимость</div>
     </div>
 </div>
+<!--подгрузка товаров-->
 <div id="catalog" class="wrapper"></div>
+<!--пагинация-->
+<div class="pagination flex-box justify-content-center">
+    <?php
+        //подключение файла
+        $connect = new \Project\Core\Connect();
+
+        //фильтрация по категориям
+        $category_str = '';  //вспомогательная строка для категории чтобы при клике в ячейки пагинации не выкидывало на - Все товары
+        $filter = ''; //убираем Notice: Undefined variable: filter in ...
+        if (isset($_GET['category_id']) && $category_id = $_GET['category_id']) { //isset($_GET['category_id']) --- убирает Notice: Undefined index: category_id in ...
+            $filter = " WHERE category_id=$category_id";
+            $category_str = "&category_id=$category_id";
+        }
+        
+        //запрос к DB с подсчетом количества id и записью в переменную num
+        $result = mysqli_query($connect->getConnection(), "SELECT COUNT(id) as num FROM core_goods $filter" );
+        //создание ассоциативного массива с данными из DB
+        $info = mysqli_fetch_assoc($result);
+        //в переменную помещаем данные из массива с ключом num
+        $amount = $info['num'];
+        $per_page = 4;
+        $pages_amount = ceil($amount / $per_page); //ceil округляет в большую сторону
+
+        //выделение в пагинации активной страницы
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+    ?>
+    <?php for ($i = 1; $i <= $pages_amount; $i++): ?>
+    <div class="amount padding-10<? if($i == $page) { ?> page-active nav<? } ?>">
+        <a href="?page=<?= $i ?><?= $category_str ?>">
+            <?= $i ?>    
+        </a>
+        </div>
+    <?php endfor; ?>
+</div>
+<!--
 <div class="flex-box justify-content-center">
-    <div class="padding-10">1</div>
+    <div class="padding-10 amount">1</div>
     <div class="padding-10">2</div>
     <div class="padding-10">3</div>
     <div class="padding-10">4</div>
 </div>
-
+-->
 <?php
     include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
 ?>
