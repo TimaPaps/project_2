@@ -32,32 +32,37 @@
     <h1 class="text-up"><?= $cat_name ?></h1>
     <p class="text-i">Все товары</p>
     <?//var_dump($_GET);?>
-    <div class="flex-box justify-content-center text-i">
-        <div class="categories padding-10">
-          
-                <div class="categories-heading">Категории</div>
-                <div class="categories-nav">
-                    <ul>
-                        <li>
-                            <a href="?type_id=1 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Куртки</a>
-                        </li>
-                        <li>
-                            <a href="?type_id=2 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Джинсы</a>
-                        </li>
-                        <li>
-                            <a href="?type_id=3 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Обувь</a>
-                        </li>
-                    </ul>
-                </div>
-            
+    <div class="filters flex-box justify-content-center text-i nav-i">
+        <div class="padding-10">          
+            <div class="filters-btn">Категории</div>
+            <div class="display-none ">
+                <ul>
+                    <li><a href="?type_id=1 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Куртки</a></li>
+                    <li><a href="?type_id=2 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Джинсы</a></li>
+                    <li><a href="?type_id=3 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Обувь</a></li>
+                </ul>
+            </div>
         </div>
         <div class="padding-10">
-            <div>Размер</div>
-            <div></div>
+            <div class="filters-btn">Размер</div>
+            <div class="display-none ">
+                <ul>
+                    <li><a href="?type_id=1 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Куртки</a></li>
+                    <li><a href="?type_id=2 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Джинсы</a></li>
+                    <li><a href="?type_id=3 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Обувь</a></li>
+                </ul>
+            </div>
         </div>
         <div class="padding-10">
-            <div>Стоимость</div>
-            <div></div>
+            <div class="filters-btn">Стоимость</div>
+            <div class="display-none text-14px">
+                <ul>
+                    <li><a href="">0-1000 руб.</a></li>
+                    <li><a href="">1000-3000 руб.</a></li>
+                    <li><a href="">3000-6000 руб.</a></li>
+                    <li><a href="">6000-20000 руб.</a></li>
+                </ul>
+            </div>
         </div>
 <!--    
         <div class="padding-10">Категория</div>

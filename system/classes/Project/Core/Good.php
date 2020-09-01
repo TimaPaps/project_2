@@ -3,6 +3,52 @@ namespace Project\Core;
 
 //без метода getInfo
 class Good extends \Project\Core\Unit {
+
+    public static $has_good = 1;
+
+    const HAS_GOOD = 1;
+    const IS_REAL = 1;
+    //const IS_REAL = 0;
+
+    public static function getGoodStaticInfo() {
+        return self::IS_REAL;
+    }
+
+    public static function getQuality() {
+        if (self::getGoodStaticInfo()) {  //(self::IS_REAL) - обращение к константе
+            $text = "Этот товар официальный";
+        } else {
+            $text = "Этот товар реплика";
+        }        
+        echo $text;
+    }
+
+/* 
+    public static function getQuality() {
+        if (self::IS_REAL) {  //(self::IS_REAL) - обращение к константе
+            $text = "Этот товар официальный";
+        } else {
+            $text = "Этот товар реплика";
+        }        
+        echo $text;
+    }
+*/
+/*
+    public static function getQuality() {
+        if (static::IS_REAL) {  //(static::IS_REAL) - обращение к константе
+            $text = "Этот товар официальный";
+        } else {
+            $text = "Этот товар реплика";
+        }        
+        echo $text;
+    }
+*/
+/*  //статический метод
+    public static function getQuality() {
+        $text = "Этот товар официальный";
+        echo $text;
+    }
+*/
     //переопределение метода
     function setTable() {
         return 'core_goods';

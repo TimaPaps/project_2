@@ -39,6 +39,19 @@
             <div class="padding-10">
                 <?= $good->price() ?> руб.
             </div>
+            <div>
+                <?= \Project\Core\Good::getQuality() ?>
+            </div>
+            <div>
+               <? if (\Project\Core\Good::$has_good) {?>
+                    Товар в наличии
+                <? } ?>
+            </div>
+            <div>
+               <? if (\Project\Core\Good::HAS_GOOD) {?>
+                    Товар не в наличии
+                <? } ?>
+            </div>
         </div>   
     <?php endwhile; ?>
 </div>

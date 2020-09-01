@@ -6,7 +6,7 @@ function renderGoods() {
     let url = 'http://project_2/system/controllers/goods/catalog/index.php';
     let str_get = window.location.search;
     url = url + str_get;
-    console.log(url);
+    //console.log(url);
 
     //запуск метода open() для установки параметров запроса (метод GET, куда - HTTP....., если true - то запрос асинхронный, иначе запрос синхронный)
     xhr.open('GET', url, true);
@@ -31,10 +31,16 @@ document.getElementById('catalog').innerHTML = '<img src="/img/preloader.gif"/>'
 //задержка времени перед стартом функции renderGoods
 setTimeout(function() {
     renderGoods();
-}, 1000);
+}, 500);
 
 //выпадающие фильтры товаров
-/*let click = document.getElementsByClassName('categories-heading');
-click.click(function() {
-    slideToggle(400);
-});*/
+let listObj = document.getElementsByClassName('filters-btn');
+//console.log(listObj);
+
+for (let i = 0; i < listObj.length; i++) {
+    listObj[i].addEventListener('click', function() {
+        let open = document.querySelectorAll('.display-none');
+        //console.log(open);
+        open[i].classList.toggle('display-block');
+    });
+}
