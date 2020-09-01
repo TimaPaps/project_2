@@ -35,7 +35,7 @@
     <div class="filters flex-box justify-content-center text-i nav-i">
         <div class="padding-10">          
             <div class="filters-btn">Категории</div>
-            <div class="display-none ">
+            <div class="display-none z-index-1">
                 <ul>
                     <li><a href="?type_id=1 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Куртки</a></li>
                     <li><a href="?type_id=2 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Джинсы</a></li>
@@ -45,7 +45,7 @@
         </div>
         <div class="padding-10">
             <div class="filters-btn">Размер</div>
-            <div class="display-none ">
+            <div class="display-none z-index-1">
                 <ul>
                     <li><a href="?type_id=1 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Куртки</a></li>
                     <li><a href="?type_id=2 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Джинсы</a></li>
@@ -55,7 +55,7 @@
         </div>
         <div class="padding-10">
             <div class="filters-btn">Стоимость</div>
-            <div class="display-none text-14px">
+            <div class="display-none z-index-1 text-14px">
                 <ul>
                     <li><a href="">0-1000 руб.</a></li>
                     <li><a href="">1000-3000 руб.</a></li>

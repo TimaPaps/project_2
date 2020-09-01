@@ -4,7 +4,8 @@ namespace Project\Core;
 //без метода getInfo
 class Good extends \Project\Core\Unit {
 
-    public static $has_good = 1;
+    //public static $has_good = 1;
+    public static $has_good = 3;
 
     const HAS_GOOD = 1;
     const IS_REAL = 1;
@@ -12,6 +13,10 @@ class Good extends \Project\Core\Unit {
 
     public static function getGoodStaticInfo() {
         return self::IS_REAL;
+    }
+
+    public static function getStaticVar() {
+        return self::$has_good;
     }
 
     public static function getQuality() {

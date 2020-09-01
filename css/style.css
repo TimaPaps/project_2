@@ -95,6 +95,10 @@
 .display-block {
     display: block;
 }
+.z-index-1 {
+    z-index: 1;
+    position: absolute;
+}
 
 /*блок header*/
 .header-logo {
@@ -184,9 +188,11 @@
 .main-background-gray {
     background: gray
 }
-*/
 
 /*блок каталог товаров*/
+.filters {
+    margin-bottom: 50px;
+}
 .filters-btn {
     border-bottom: 1px solid black;
     padding: 10px 0 10px 0;
@@ -239,6 +245,13 @@
     text-align: center;
     margin: 5px;
     font-size: 14px;
+}
+
+/*блок card*/
+.card-background-gray {
+    background: gray;
+    width: 300px;
+    height: 300px;
 }
 
 /*блок footer*/

@@ -5,7 +5,7 @@
 
 <div class="wrapper nav padding-30 text-up text-12px"><a class="text-12" href="index.php">Главная</a> / <a  href="catalog.php">Каталог</a> / </div>
 <div class="text-align-center">
-    <div></div>
+    <div class="wrapper card-background-gray"></div>
     <div class="">
         <h1>Кеды с полоской</h1>
         <p>Артикул: 112233</p>

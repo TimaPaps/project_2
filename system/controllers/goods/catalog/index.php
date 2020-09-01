@@ -48,6 +48,11 @@
                 <? } ?>
             </div>
             <div>
+               <? if (\Project\Core\Good::$has_good) {?>
+                    Товар в наличии <?= \Project\Core\Good::$has_good ?>
+                <? } ?>
+            </div>
+            <div>
                <? if (\Project\Core\Good::HAS_GOOD) {?>
                     Товар не в наличии
                 <? } ?>
