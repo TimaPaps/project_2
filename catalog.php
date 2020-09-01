@@ -8,6 +8,8 @@
     if (isset($_GET['category_id'])) {
         $category = new \Project\Core\Category($_GET['category_id']);
         $cat_name = $category->getField('title');
+        //$good = new \Project\Core\Type($_GET['type_id']);
+        //$good_name = $good->getField('title');
     } else {
         $cat_name = 'Все товары';
     }
@@ -27,7 +29,9 @@
     //var_dump($_GET);
 ?>
 
-<div class="wrapper nav padding-30 text-up text-12px"><a class="text-12" href="index.php">Главная</a> / <a  href="catalog.php">Каталог</a> / <?= $cat_name ?></div>
+<div class="breadcrumbs wrapper nav padding-30 text-up text-12px">
+    <a class="text-12" href="index.php">Главная</a> / <?= $cat_name ?>
+</div>
 <div class="wrapper text-align-center">
     <h1 class="text-up"><?= $cat_name ?></h1>
     <p class="text-i">Все товары</p>

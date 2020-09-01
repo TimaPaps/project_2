@@ -29,11 +29,15 @@
         ?>
         <div class="item padding-30">
             <div class="item-photo">
-                <img src="<?= $good->photo() ?>">
+                <a href="card.php?id=<?= $good->getField('id') ?>">
+                    <img src="<?= $good->photo() ?>">
+                </a>
             </div>
             <div class="padding-10">
                 <b>
-                    <?= $good->title() ?>
+                    <a href="card.php?id=<?= $good->getField('id') ?>">
+                        <?= $good->title() ?>
+                    </a>
                 </b>            
             </div>
             <div class="padding-10">
