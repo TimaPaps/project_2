@@ -12,10 +12,10 @@ class Article extends \Project\Core\Unit implements \Project\Interfaces\ShowArti
         return $this->getField('photo');
     }
     function title() {
-        return $this->getField('photo');
+        return $this->getField('title');
     }
     function description() {
-        return $this->getField('photo');
+        return $this->getField('description');
     }
 }
 ?>

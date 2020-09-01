@@ -31,6 +31,7 @@ $result = (new \Project\Core\Article())->getElements();
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <?php
                     $article = new \Project\Core\Article($row['id']);
+                    //echo $row['id'];
                     //добавляем $row['id'] в аргумент при создании экземпляра класса Article используя в index.php метод public function __construct($id) и убираем строку $article->getId($row['id']);
                     //убираем строку используя переопределение метода setTable из Unit в Article   $article->getTable('core_articles');  ////вызов метода с пробросом названия нужной таблицы в класс Unit с универсальным методом для выбора нужной таблицы из DB
                     /*$article->id;
