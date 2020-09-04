@@ -86,6 +86,11 @@ class Good extends \Project\Core\Unit {
             $filter .= " AND type_id=$type_id";
         }
 
+        //фильтрация по типу товара - новинки
+        if (isset($_GET['is_new']) && $is_new = $_GET['is_new']) {
+            $filter .= " AND is_new=$is_new";
+        }
+
         //пагинация, расчет товаров на страницу
         $page = 1;  //если страница не задана то будем подставлять 1
         if (isset($_GET['page'])) {

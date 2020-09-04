@@ -22,10 +22,10 @@ $result = (new \Project\Core\Article())->getElements();
 ?>
 <body>
     <main class="wrapper">
-        <div class="text-align-center margin-top-60">
+        <div class="text-align-center margin-top-60 nav">
             <h1 class="text-up">Новые поступления весны</h1>
             <p class="text-i">Мы подготовили для Вас лучшие новинки сезона</p>
-            <p class="btn-10-30 margin-top-40">посмотреть новинки</p>
+            <a class="btn-10-30 margin-top-40" href="catalog.php?is_new=1">посмотреть новинки</a>
         </div>
         <div class="flex-box flex-wrap margin-top-30">
             <?php while($row = mysqli_fetch_assoc($result)): ?>
@@ -107,7 +107,7 @@ $result = (new \Project\Core\Article())->getElements();
                 <input type="submit" value="записаться">
             </form>
         </div>
-        <p class="text-align-center">Некорректный e-mail. Попробуйте еще раз.</p>
+        <p class="text-align-center text-i-red">Некорректный e-mail. Попробуйте еще раз.</p>
     </main>
 <?php
     include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');

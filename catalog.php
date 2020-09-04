@@ -10,6 +10,8 @@
         $cat_name = $category->getField('title');
         //$good = new \Project\Core\Type($_GET['type_id']);
         //$good_name = $good->getField('title');
+    } elseif (isset($_GET['is_new'])) {
+        $cat_name = 'Новинки';
     } else {
         $cat_name = 'Все товары';
     }
@@ -30,7 +32,7 @@
 ?>
 
 <div class="breadcrumbs wrapper nav padding-30 text-up text-12px">
-    <a class="text-12" href="index.php">Главная</a> / <?= $cat_name ?>
+    <a class="text-12" href="index.php">Главная</a> / <a href="catalog.php">Категории</a> / <?= $cat_name ?>
 </div>
 <div class="wrapper text-align-center">
     <h1 class="text-up"><?= $cat_name ?></h1>
@@ -98,6 +100,13 @@
             $type_str = "&type_id=$type_id";
         }
         
+        $is_new_str = '';
+        //фильтрация по типу товара - новинки
+        if (isset($_GET['is_new']) && $is_new = $_GET['is_new']) {
+            $filter .= " AND is_new=$is_new";
+            $is_new_str = "&is_new=$is_new";
+        }
+
         //запрос к DB с подсчетом количества id и записью в переменную num
         $result = mysqli_query($connect->getConnection(), "SELECT COUNT(id) as num FROM core_goods WHERE id>0 $filter" );
         //создание ассоциативного массива с данными из DB
@@ -115,7 +124,7 @@
     ?>
     <?php for ($i = 1; $i <= $pages_amount; $i++): ?>
     <div class="amount padding-10 nav-white<? if($i == $page) { ?> page-active nav <? } ?>">
-        <a href="?page=<?= $i ?><?= $category_str ?><?= $type_str ?>">
+        <a href="?page=<?= $i ?><?= $category_str ?><?= $type_str ?><?= $is_new_str ?>">
             <?= $i ?>    
         </a>
         </div>
