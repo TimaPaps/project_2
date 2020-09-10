@@ -1,6 +1,7 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 /*
     require_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Connect.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/UnitActions.php');
@@ -27,7 +28,7 @@ $result = (new \Project\Core\Article())->getElements();
             <p class="text-i">Мы подготовили для Вас лучшие новинки сезона</p>
             <a class="btn-10-30 margin-top-40" href="catalog.php?is_new=1">посмотреть новинки</a>
         </div>
-        <div class="flex-box flex-wrap margin-top-30">
+        <div class="flex-box flex-wrap article-column margin-top-30">
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <?php
                     $article = new \Project\Core\Article($row['id']);
@@ -46,12 +47,12 @@ $result = (new \Project\Core\Article())->getElements();
                 ?>
                 <div class="main-article" style="background-image: url('<?= $article->getField('photo') ?>')">
                     <div>
-                        <div class="padding-10">
-                            <b>
+                        <div class="padding-5">
+                            <p class="text-up text-20px margin-0">
                                 <?= $article->title() ?>
-                            </b>            
+                            </p>            
                         </div>
-                        <div class="padding-10">
+                        <div class="text-italic padding-5">
                             <?= $article->getField('description') ?>
                         </div>
                     </div>

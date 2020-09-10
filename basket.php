@@ -1,6 +1,8 @@
 <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
+
+include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
+
 ?>
 
 

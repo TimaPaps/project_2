@@ -1,8 +1,9 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 
     //создание фильтра по колонке category_id из таблицы core_goods и таблицы categories с использованием класса Category 
     if (isset($_GET['category_id'])) {
