@@ -11,12 +11,12 @@
     </div>
     <div class="flex-box header-user">
         <div class="flex-box align-items-center margin-left-30">
-            <div class="header-account header-icon "></div>
+            <div class="header-account header-icon"></div>
             <?php if (isset($_COOKIE['user_id'])) { ?>
                 <?php 
                 //    $user = new \Project\Core\User($_COOKIE['user_id']); 
                 ?>
-                Привет, <?php //$user->login() ?> <?= (new \Project\Core\User($_COOKIE['user_id']))->login() ?> (<a style="color: orange;" href="system/controllers/users/logout.php">Выйти</a>)
+                Привет, <?php //$user->login() ?> <?= (new \Project\Core\User($_COOKIE['user_id']))->login() ?> (<a class="header-user-out" href="system/controllers/users/logout.php">Выйти</a>)
             <?php } else { ?>
                 <a href="auth/index.php">Войти</a>
             <?php } ?>

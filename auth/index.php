@@ -6,26 +6,29 @@ include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 
 ?>
-<form action="../system/controllers/users/auth.php" method="GET">
-    <div>
-        <input required type="text" name="login" id="" placeholder="Логин или E-mail">
-    </div>
-    <div>
-        <input required type="password" name="password" id="" placeholder="Пароль">
-    </div>
-    <?php if (isset($_GET['wrong'])): ?>
-        <div style="color: red;">
-            Неверный логин или пароль
-        </div>
-    <?php endif; ?>
-    <div>
-        <button>Войти</button>
-    </div>
-    <div>
-        или <a href="reg/index.php">зарегистрироваться</a>
-    </div>
-</form>
 
+<div class="wrapper flex-box text-align-center">
+    <form class="form" action="../system/controllers/users/auth.php" method="GET">
+        <div>
+            <input required type="text" name="login" placeholder="Логин или E-mail">
+        </div>
+        <div>
+            <input required type="password" name="password" placeholder="Пароль">
+        </div>
+        <?php if (isset($_GET['wrong'])): ?>
+            <div class="padding-5 text-red">
+                Неверный логин или пароль
+            </div>
+        <?php endif; ?>
+        <div class="padding-10">
+            <button class="btn-10-30">Войти</button>
+        </div>
+        <p class="margin-0 text-14px">или</p>
+        <div class="padding-5 nav text-orange-important">
+            <a href="reg/index.php">зарегистрироваться</a>
+        </div>
+    </form>
+</div>
 
 <?php
     include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');

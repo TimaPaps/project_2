@@ -30,6 +30,9 @@
 .margin-0 {
     margin: 0;
 }
+.margin-10 {
+    margin: 10;
+}
 .margin-40 {
     margin: 40px;
 }
@@ -90,6 +93,12 @@
 }
 .text-gray {
     color: rgb(90, 90, 90);
+}
+.text-red {
+    color: red;
+}
+.text-orange-important a{
+    color: orange !important;
 }
 .is-bold {
     font-weight: bold;
@@ -161,6 +170,9 @@
     text-decoration: none;
     color: black;
     cursor: pointer;
+}
+.header-user-out {
+    color: orange !important;
 }
 
 /*блок главная страница*/
@@ -304,6 +316,23 @@
     border: 1px solid black;
     margin: 0 auto;
 }
+
+/*блок форма авторизации и регистрации*/
+.form {
+    margin: 50px auto;
+    padding: 50px 100px 50px 100px;
+    border: 1px solid orange;
+    box-sizing: border-box;
+}
+[type="text"],
+[type="password"] {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}.form > div > button {
+    background: orange;
+}
+
 /*блок footer*/
 .facebook {
     background: url(/img/icons/facebook.svg) center center / contain no-repeat;

@@ -33,7 +33,7 @@
             <div class="padding-30">
                 <h3>МЫ В СОЦИАЛЬНЫХ СЕТЯХ</h3>
                 <p>Сайт разработан Папсуевым Т.В. <br> 
-                под наставничеством INORDIC</p>
+                под менторством INORDIC</p>
                 <p>2020 © Все права защищены</p>
                 <div class="flex-box">
                     <div class="facebook footer-social-icon"></div>
