@@ -112,6 +112,14 @@
     display: inline-block;  
     cursor: pointer; 
 }
+.btn-10-30-orange {
+    padding: 10px 30px;
+    background: orange;
+    color: white;
+    border: none;
+    display: inline-block;  
+    cursor: pointer; 
+}
 .border-1px {
     border: 1px solid black;
     display: inline-block;   
@@ -329,8 +337,6 @@
     border: 1px solid black;
     padding: 10px;
     margin: 10px;
-}.form > div > button {
-    background: orange;
 }
 
 /*блок footer*/

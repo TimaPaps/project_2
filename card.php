@@ -39,7 +39,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
     </div>
     <p class="text-up margin-top-30">Размер</p>
     <div class="square"></div>
-    <input class="margin-40" type="submit" value="добавить в корзину">
+    <div onclick="toBasket()" class="margin-40 btn-10-30-orange">добавить в корзину</div>
 </div> 
 
 <!--

@@ -21,7 +21,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
             </div>
         <?php endif; ?>
         <div class="padding-10">
-            <button class="btn-10-30">Войти</button>
+            <button class="btn-10-30-orange">Войти</button>
         </div>
         <p class="margin-0 text-14px">или</p>
         <div class="padding-5 nav text-orange-important">

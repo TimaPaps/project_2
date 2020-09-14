@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <header class="wrapper flex-box space-between padding-30 align-items-center">
     <div class="flex-box align-items-center">
         <a href="index.php" class="header-logo"></a>
@@ -23,7 +29,7 @@
         </div>
         <div class="flex-box align-items-center margin-left-30">
             <div class="header-basket header-icon "></div>
-            <a href="#">Корзина</a>
+            <a href="basket.php">Корзина (<span id="basket-count"><?= count($_SESSION['basket']) ?></span>)</a> 
         </div>
     </div>
 </header>

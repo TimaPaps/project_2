@@ -18,7 +18,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
             <input type="password" name="password" id="" placeholder="Пароль">
         </div>
         <div class="padding-10">
-            <button  class="btn-10-30">Зарегистрироваться</button>
+            <button  class="btn-10-30-orange">Зарегистрироваться</button>
         </div>
         <p class="margin-0 text-14px">или</p>
         <div class="padding-5 nav text-orange-important">
