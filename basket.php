@@ -10,44 +10,71 @@ $result = (new \Project\Core\Good())->getElements();
 
 ?>
 
+<div class="wrapper text-align-center">
+    <h1 class="text-up">Ваша корзина</h1>
+    <p class="text-i">Товары резервируются на ограниченное время</p>
+</div>
 
 <!--создание карточки товара-->
-<div class="wrapper flex-box flex-wrap nav">
+<div class="wrapper nav">
     <? if (isset($_SESSION['basket']) && count($_SESSION['basket'])) { ?>
+        <div class="basket-row padding-30 text-up text-12px text-gray">
+            <div class="flex-box width-40">
+                <div class="padding-10 width-40">Фото</div>
+                <div class="padding-10">Наименование</div>
+            </div>
+            <div class="flex-box width-60 justify-content-flex-end text-align-center">
+                <span class="width-20 padding-10">Размер</span>
+                <span class="width-20 padding-10">Количество</span>
+                <span class="width-20 padding-10">Стоимость</span>
+                <span class="width-20 padding-10">Удалить</span>
+            </div>
+        </div>
         <?php foreach($_SESSION['basket'] as $id): ?>
             <?php
                 $good = new \Project\Core\Good($id);
-                //добавляем $row['id'] в аргумент при создании экземпляра класса Article используя в index.php метод public function __construct($id) и убираем строку $good->getId($row['id']);
-                //убираем строку используя переопределение метода setTable из Unit в Article   $good->getTable('core_goods'); //вызов метода с пробросом названия нужной таблицы в класс Unit с универсальным методом для выбора нужной таблицы из DB
             ?>
-            <div class="item padding-30">
-                <div class="item-photo">
-                    <a href="card.php?id=<?= $good->getField('id') ?>">
-                        <img src="<?= $good->photo() ?>">
-                    </a>
-                </div>
-                <div class="padding-10">
-                    <b>
+            <div class="basket-row padding-30">
+                <div class="flex-box width-40 align-items-center">
+                    <div class="basket-photo width-40 padding-10">
                         <a href="card.php?id=<?= $good->getField('id') ?>">
-                            <?= $good->title() ?>
+                            <img src="<?= $good->photo() ?>">
                         </a>
-                    </b>            
+                    </div>
+                    <div class="padding-10">
+                        <b class="text-up">
+                            <a href="card.php?id=<?= $good->getField('id') ?>">
+                                <?= $good->title() ?>
+                            </a>
+                        </b>   
+                        <div class="text-gray">
+                            арт. <?= $good->article() ?>
+                        </div>         
+                    </div>
                 </div>
-                <div class="padding-10">
-                    <?= $good->price() ?> руб.
-                </div>
-                <div data-id="<?= $id ?>" onclick="fromBasket()" class="good-delete">
-                    X
+                <div class="flex-box width-60 justify-content-flex-end text-align-center">
+                    <div class="width-20 padding-10">
+                        M
+                    </div>
+                    <div class="width-20 padding-10">
+                        3
+                    </div>
+                    <div class="width-20 padding-10">
+                        <?= $good->price() ?> руб.
+                    </div>
+                    <div class="width-20 padding-10" data-id="<?= $id ?>" onclick="fromBasket()" class="good-delete">
+                        X
+                    </div>
                 </div>
             </div>   
         <?php endforeach; ?>
-        <div>
+        <div class="text-align-center text-orange-important">
             <a href="system/controllers/basket/clear_basket.php">очистить корзину</a>
         </div>
     <? } else { ?>
-    <div class="text-align-center">
-        <p class="padding-30">Ваша корзина пуста</p> 
-    </div>
+        <div class="text-align-center">
+            <p class="padding-30">Ваша корзина пуста</p> 
+        </div>
     <? } ?>
 </div>
 

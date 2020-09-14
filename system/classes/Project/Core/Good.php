@@ -67,6 +67,9 @@ class Good extends \Project\Core\Unit {
     function photo() {
         return $this->getField('photo');
     }
+    function article() {
+        return $this->getField('article');
+    }
     
     //переопределение метода getElement из Unit
     public function getElements() {

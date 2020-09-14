@@ -78,7 +78,7 @@ function fromBasket() {
     //получаем id товара
     let id = event.target.getAttribute('data-id');
     //скрываем товар визуально
-    event.target.closest('.item').remove();
+    event.target.closest('.basket-row').remove();
 
     // создание нового экземпляра класса для запросов
     let xhr = new XMLHttpRequest();
