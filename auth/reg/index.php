@@ -12,7 +12,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
             <input type="text" name="login" id="" placeholder="Логин">
         </div>
         <div>
-            <input type="text" name="email" id="" placeholder="E-mail">
+            <input type="email" name="email" id="" placeholder="E-mail">
         </div>
         <div>
             <input type="password" name="password" id="" placeholder="Пароль">

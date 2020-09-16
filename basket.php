@@ -93,7 +93,7 @@ $result = (new \Project\Core\Good())->getElements();
         <p class="text-i">Все поля обязательны для заполнения</p>
     </div>
     
-    <form class="wrapper-700" action="" method="GET">
+    <form class="wrapper-700" action="/system/controllers/orders/create.php" method="GET">
         <div class="padding-10 margin-bottom-60 nav">  
             <p class="margin-0 padding-10-0 text-up text-gray">Выберите вариант доставки</p>        
             <div class="select-pay">Курьерская служба - 500 руб.</div>
@@ -107,25 +107,25 @@ $result = (new \Project\Core\Good())->getElements();
         <div class="flex-box space-between">
             <div class="width-45">
                 <p class="margin-0 padding-10">Имя</p>
-                <input class="width-100" required type="text" name="name">
+                <input class="width-100" required type="text" name="first_name">
             </div>
             <div class="width-45">
                 <p class="margin-0 padding-10">Фамилия</p>
-                <input class="width-100" type="text" name="surname">
+                <!--<input class="width-100" type="text" name="surname">-->
             </div>
         </div>
         <div>
             <p class="margin-0 padding-10">Адрес</p>
-            <input class="width-100" type="text" name="adress">
+            <!--<input class="width-100" type="text" name="adress">-->
         </div>
         <div class="flex-box space-between">
             <div class="width-45">
                 <p class="margin-0 padding-10">Город</p>
-                <input class="width-100" type="text" name="city">
+                <!--<input class="width-100" type="text" name="city">-->
             </div>
             <div class="width-45">
                 <p class="margin-0 padding-10">Индекс</p>
-                <input class="width-100" type="text" name="index">
+                <!--<input class="width-100" type="text" name="city_index">-->
             </div>
         </div>
         <div class="flex-box space-between">
