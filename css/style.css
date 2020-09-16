@@ -19,8 +19,15 @@
     padding: 5px;
     box-sizing: border-box;
 }
+.padding-5-30 {
+    padding: 5px 30px;
+}
 .padding-10 {
     padding: 10px;
+    box-sizing: border-box;
+}
+.padding-10-0 {
+    padding: 10px 0;
     box-sizing: border-box;
 }
 .padding-30 {
@@ -51,6 +58,12 @@
 .margin-top-100 {
     margin-top: 100px;
 }
+.margin-bottom-40 {
+    margin-bottom: 40px;
+}
+.margin-bottom-60 {
+    margin-bottom: 60px;
+}
 .align-items-center {
     align-items: center;
 }
@@ -71,11 +84,30 @@
 .width-40 {
     width: 40%;
 }
+.width-45 {
+    width: 45%;
+}
+.width-50 {
+    width: 50%;
+}
 .width-60 {
     width: 60%;
 }
+.width-90 {
+    width: 90%;
+}
+.width-100 {
+    /*width: 100%;*/
+    width: -webkit-fill-available;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
 .text-align-center {
     text-align: center;
+}
+.text-align-end {
+    text-align: end;
 }
 .text-up {
     text-transform: uppercase;
@@ -112,11 +144,17 @@
 .text-red {
     color: red;
 }
+.text-orangered {
+    color: orangered;
+}
 .text-orange-important a{
     color: orange !important;
 }
 .is-bold {
     font-weight: bold;
+}
+.h2-32px {
+    font-size: 32px;
 }
 .btn-10-30 {
     padding: 10px 30px;
@@ -290,7 +328,7 @@
 }
 .display-none > ul {
     list-style-type: none;
-    padding-left: 10px;
+    padding-left: 20px;
     text-align: left;
 }
 
@@ -340,12 +378,32 @@
 /*блок корзина*/
 .basket-row {
     display: flex;
-    /*justify-content: space-between;*/
     align-items: center;
 }
 .basket-photo img{
     width: 100px;
     height: 100px; 
+}
+.select-pay {
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+}
+.select-pay:before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    border: 8px solid transparent; border-top: 8px solid black;
+}
+.arrow-down {
+    background: url('/img/arrow-down.svg') ;
+    height: 20px;
+    width: 20px;
 }
 
 /*блок форма авторизации и регистрации*/
