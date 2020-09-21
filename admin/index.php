@@ -1,13 +1,15 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
+    //include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
 
     $user = new \Project\Core\User($_COOKIE['user_id']);
 
     if ($user->getField('user_group') != 2) {
         header('Location: http://project_2/catalog.php');
     }
-
+//var_dump($user);
+//var_dump($user->login());
 ?>
 
 <!doctype html>
@@ -79,11 +81,12 @@
 
 
 <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">My second web-project</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">My second <br> web-project</a>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Выйти</a>
+      <span class="nav-link" style="color: red;"><?= $user->login() ?></span>
+      <a class="nav-link" href="/system/controllers/users/logout.php">Выйти</a>
     </li>
   </ul>
 </nav>
@@ -94,27 +97,21 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?page=orders">
               <span data-feather="file"></span>
               Заказы
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?page=items">
               <span data-feather="shopping-cart"></span>
               Товары
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?page=users">
               <span data-feather="users"></span>
               Клиенты
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2"></span>
-              Отчеты
             </a>
           </li>
         </ul>
@@ -127,47 +124,177 @@
         </div>
       </div>
 
-      <h2>Заказы</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th>#id</th>
-              <th>Имя</th>
-              <th>Телефон</th>
-              <th>E-mail</th>
-              <th>Товары</th>
-              <th>Статус</th>
-              <th>Время заказа</th>
-              <th>Время обработки</th>
-            </tr>
-          </thead>
-          <tbody>
-              <?php
+      <? if (isset($_GET['new'])) { ?>
+        <form action="/system/controllers/goods/create.php" method="POST" enctype="multipart/form-data" style="width: 80%">
+          <div class="form-group">
+            <input type="text" class="form-control margin-0-important" name="title" placeholder="Название товара" >
+          </div>
+          <div class="form-group margin-0">
+            <input type="text" class="form-control margin-0-important" name="article" placeholder="Артикул">
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" name="price" placeholder="Цена"> руб.
+          </div>
+          <div class="form-group">
+            <input type="file" class="form-control" name="photo" style="border: none;">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Категория</label>
+            <select class="form-control" name="category_id">
+              <option value="1">Женщинам</option>
+              <option value="2">Мужчинам</option>
+              <option value="3">Детям</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Тип товара</label>
+            <select class="form-control" name="type_id">
+              <option value="1">Куртки</option>
+              <option value="2">Джинсы</option>
+              <option value="3">Обувь</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Описание товара</label>
+            <textarea class="form-control" name="description" rows="3"></textarea>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="" name="is_new" value="1"> Новинка
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Создать</button>
+          </div>          
+        </form>
+      <? } ?>
 
-                $connect = new \Project\Core\Connect();
+      <? if (isset($_GET['page']) && $_GET['page'] == 'items') { ?>
+        <div>
+          <a href="?new=item" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить товар</a>
+        </div>
+        <h2>Товары</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>#id</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Артикул</th>
+                <th>Описание</th>
+                <th>Категория</th>
+                <th>Тип товара</th>
+                <th>Новинка</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
 
-                //запрос к DB
-                $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_orders " );
-                //создание ассоциативного массива с данными из DB
-                while ($info = mysqli_fetch_assoc($result)) {
-                    $status = new \Project\Core\Status($info['order_status']);
+                  $connect = new \Project\Core\Connect();
 
+                  //запрос к DB
+                  $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_goods " );
+                  //создание ассоциативного массива с данными из DB и вывод товаров в цикле
+                  while ($info = mysqli_fetch_assoc($result)) { 
+                    $category = new \Project\Core\Category($info['category_id']);
+                    $type = new \Project\Core\Type($info['type_id']);
+                    
                     ?>
                     <tr>
                         <td><?= $info['id'] ?></td>
-                        <td><?= $info['first_name'] ?></td>
-                        <td><?= $info['phone'] ?></td>
-                        <td><?= $info['email'] ?></td>
-                        <td><?= $info['goods'] ?></td>
-                        <td style="color: <?= $status->getField('color') ?>; background: <?= $status->getField('background') ?>"><?= $status->getField('title') ?></td>
-                        <td><?= date('d-m-Y в H:i', $info['publ_time']) ?></td>
-                        <td><?= $info['last_update'] != 0 ? date('d-m-Y в H:i', $info['last_update']) : 'не просмотрено' ?></td>
+                        <td><?= $info['title'] ?></td>
+                        <td><?= $info['price'] ?></td>
+                        <td><?= $info['article'] ?></td>
+                        <td><?= $info['description'] ?></td>
+                        <td><?= $category->getField('title') ?></td>
+                        <td><?= $type->getField('title') ?></td>
+                        <td><?= $info['is_new'] != 0 ? 'новинка' : '' ?></td>
                     </tr>
-                <? } ?>
-          </tbody>
-        </table>
-      </div>
+                  <? } ?>                
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <a href="?new=item" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить товар</a>
+        </div>
+      <? } elseif (isset($_GET['page']) && $_GET['page'] == 'users') { ?>
+        <h2>Клиенты</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>#id</th>
+                <th>Логин</th>
+                <th>E-mail</th>
+                <th>Группа пользователей</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                  $connect = new \Project\Core\Connect();
+
+                  //запрос к DB
+                  $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_users " );
+                  //создание ассоциативного массива с данными из DB и вывод товаров в цикле
+                  while ($info = mysqli_fetch_assoc($result)) { 
+                    $group = new \Project\Core\UserGroup($info['user_group']);
+
+                    ?>
+                      <tr>
+                          <td><?= $info['id'] ?></td>
+                          <td><?= $info['login'] ?></td>
+                          <td><?= $info['email'] ?></td>
+                          <td><?= $group->getField('title') ?></td>
+                      </tr>
+                  <? } ?>              
+            </tbody>
+          </table>
+        </div>
+        <? } elseif (isset($_GET['page']) && $_GET['page'] == 'orders') { ?>
+          <h2>Заказы</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>#id</th>
+                  <th>Имя</th>
+                  <th>Телефон</th>
+                  <th>E-mail</th>
+                  <th>Товары</th>
+                  <th>Статус</th>
+                  <th>Время заказа</th>
+                  <th>Время обработки</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <?php
+
+                    $connect = new \Project\Core\Connect();
+
+                    //запрос к DB
+                    $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_orders " );
+                    //создание ассоциативного массива с данными из DB
+                    while ($info = mysqli_fetch_assoc($result)) {
+                        $status = new \Project\Core\Status($info['order_status']);
+                        ?>
+                        <tr>
+                            <td><?= $info['id'] ?></td>
+                            <td><?= $info['first_name'] ?></td>
+                            <td><?= $info['phone'] ?></td>
+                            <td><?= $info['email'] ?></td>
+                            <td><?= $info['goods'] ?></td>
+                            <td style="color: <?= $status->getField('color') ?>; background: <?= $status->getField('background') ?>"><?= $status->getField('title') ?></td>
+                            <td><?= date('d-m-Y в H:i', $info['publ_time']) ?></td>
+                            <td><?= $info['last_update'] != 0 ? date('d-m-Y в H:i', $info['last_update']) : 'не просмотрено' ?></td>
+                        </tr>
+                    <? } ?>
+              </tbody>
+            </table>
+          </div>
+        <? } else { ?>
+
+      <? } ?>
+
     </main>
   </div>
 </div>

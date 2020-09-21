@@ -21,7 +21,8 @@ if ($amount > 0) {
 } else {
     //создаем новую строчку в таблице
     mysqli_query($connect->getConnection(), "INSERT INTO core_users(login, email, password) VALUES('$login', '$email', '$password') ");
-    echo "Вы успешно зарегистрировались!";
+    //echo "Вы успешно зарегистрировались!";
+    header('location: http://project_2/auth/index.php');
 }
 
 ?>

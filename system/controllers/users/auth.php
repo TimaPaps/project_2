@@ -17,11 +17,18 @@ $user = mysqli_fetch_assoc($result);
 if ($user['id']) {
     //начинаем делать проверку так как user  с таким логином уже есть
     if (hash_equals($user['password'], crypt($password, $user['password']))) {
-        //echo "Вы успешно авторизовались " . $user['login'];
-        //создание куки со сроком жизни 1 час
-        setcookie('user_id', $user['id'], time() + 3600, '/');
-        //редирект
-        header('location: http://project_2/catalog.php');        
+        if ($user['user_group'] == 2) {
+            //создание куки со сроком жизни 8 часов
+            setcookie('user_id', $user['id'], time() + 28800, '/');
+            //редирект
+            header('location: http://project_2/admin/index.php');
+        } else {
+            //echo "Вы успешно авторизовались " . $user['login'];
+            //создание куки со сроком жизни 1 час
+            setcookie('user_id', $user['id'], time() + 3600, '/');
+            //редирект
+            header('location: http://project_2/catalog.php'); 
+        }       
     } else {
         //echo "Неверный логин или пароль!";
         //редирект
