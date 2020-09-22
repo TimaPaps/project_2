@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 //var_dump($_POST);
 
 //var_dump($_FILES);
@@ -31,7 +33,7 @@ $hash = md5($file_pure_name . time());
 $file_new_name = $file_pure_name . '_' . $hash . '.' . $file_ext;
 
 //создание пути для записи файла
-$file_full_path = 'img/catalog/' . $file_new_name;
+$file_full_path = '/img/catalog/' . $file_new_name;
 
 //загрузка файла на сервер (сейчас локальный)
 move_uploaded_file($_FILES['photo']['tmp_name'], '../../../' . $file_full_path);  //'../../../' . $file_full_path --- относительный путь

@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
     require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
     include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
     //include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
@@ -130,7 +133,7 @@
             <input type="text" class="form-control margin-0-important" name="title" placeholder="Название товара" >
           </div>
           <div class="form-group margin-0">
-            <input type="text" class="form-control margin-0-important" name="article" placeholder="Артикул">
+            <input type="number" class="form-control margin-0-important" name="article" placeholder="Артикул">
           </div>
           <div class="form-group">
             <input type="number" class="form-control" name="price" placeholder="Цена"> руб.
@@ -165,6 +168,90 @@
             <button type="submit" class="btn btn-primary">Создать</button>
           </div>          
         </form>
+      <? } elseif (isset($_GET['change'])) { ?>
+
+        <? $good = new \Project\Core\Good($_GET['id']); ?>
+
+        <form action="/system/controllers/goods/update.php" method="POST" enctype="multipart/form-data" style="width: 80%">
+          <!--скрытое поле для передачи данных в какой таблице по какому id изменить товар-->
+          <input type="hidden" name="id" value="<?= $good->getField('id') ?>">
+
+          <div class="form-group">
+            <input type="text" class="form-control margin-0-important" name="title" value="<?= $good->getField('title'); ?>">
+          </div>
+          <div class="form-group margin-0">
+            <input type="number" class="form-control margin-0-important" name="article" value="<?= $good->getField('article'); ?>">
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" name="price" value="<?= $good->getField('price'); ?>"> руб.
+          </div>
+          <div class="form-group">
+            <img src="http://project_2<?= $good->getField('photo') ?>" style="width: 200px;">
+            <input type="file" class="form-control" name="photo" style="border: none;">
+          </div>
+
+          <? $category = new \Project\Core\Category($good->getField('category_id')) ?>
+          
+<?//ручное создание ассоциативного массива?>
+          <? $arr_category = [  
+            '1' => 'Женщинам',
+            '2' => 'Мужчинам',
+            '3' => 'Детям'
+          ] ?>
+           <? //var_dump($arr_category); ?>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Категория</label>
+            <select class="form-control" name="category_id">
+              <option value="<?= $category->getField('id') ?>"><?= $category->getField('title') ?></option>
+              <? foreach ($arr_category as $key => $value) { ?>
+                <? if ($key != $category->getField('id')) { ?>
+                  <option value="<?= $key ?>"><?= $value ?></option>
+                <? } ?>
+              <? } ?>
+            </select>
+          </div>
+
+          <? $type = new \Project\Core\Type($good->getField('type_id')) ?>
+
+          <?php
+//автоматическое создание ассоциативного массива
+          $connect = new \Project\Core\Connect(); 
+
+          //запрос к DB
+          $result = mysqli_query($connect->getConnection(), "SELECT * FROM item_types " );
+          //var_dump($result);
+          $arr_type = [];
+          //создание ассоциативного массива с данными из DB
+          while ($row = mysqli_fetch_assoc($result)) {
+            $arr_type[$row['id']] = $row['title'];
+          }                    
+          //var_dump($arr_type);
+          ?>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Тип товара</label>
+            <select class="form-control" name="type_id">
+              <option value="<?= $type->getField('id') ?>"><?= $type->getField('title') ?></option>
+              <? foreach ($arr_type as $key => $value) { ?>
+                <? if ($key != $type->getField('id')) { ?>
+                  <option value="<?= $key ?>"><?= $value ?></option>
+                <? } ?>
+              <? } ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Описание товара</label>
+            <textarea class="form-control" name="description" rows="3"><?= $good->getField('description'); ?></textarea>
+          </div>
+          <div class="form-group form-check">
+            <input type="hidden" name="is_new" value="0"> <!--кастом для отправки 0 если нет галочки в чекбоксе, без этой строки будет игнор на состояние чекбокса и всегда будет отправляться 1-->
+            <input type="checkbox" <? if ($good->getField('is_new')) { ?> checked <? } ?> class="" name="is_new" value="1"> Новинка
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </div>          
+        </form>
+      <? } else { ?>
+
       <? } ?>
 
       <? if (isset($_GET['page']) && $_GET['page'] == 'items') { ?>
@@ -201,7 +288,10 @@
                     ?>
                     <tr>
                         <td><?= $info['id'] ?></td>
-                        <td><?= $info['title'] ?></td>
+                        <td>
+                          <a href="?change=item&id=<?= $info['id'] ?>" target="_blank">
+                            <?= $info['title'] ?></td>  
+                          </a>
                         <td><?= $info['price'] ?></td>
                         <td><?= $info['article'] ?></td>
                         <td><?= $info['description'] ?></td>
@@ -273,6 +363,7 @@
 
                     //запрос к DB
                     $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_orders " );
+                    //var_dump($result);
                     //создание ассоциативного массива с данными из DB
                     while ($info = mysqli_fetch_assoc($result)) {
                         $status = new \Project\Core\Status($info['order_status']);
@@ -280,8 +371,16 @@
                         <tr>
                             <td><?= $info['id'] ?></td>
                             <td><?= $info['first_name'] ?></td>
-                            <td><?= $info['phone'] ?></td>
-                            <td><?= $info['email'] ?></td>
+                            <td>
+                              <a href="tel:<?= $info['phone'] ?>">
+                                <?= $info['phone'] ?>  
+                              </a>                   
+                            </td>         
+                            <td>
+                              <a href="mailto:<?= $info['email'] ?>">
+                                <?= $info['email'] ?>
+                              </a>  
+                            </td>  
                             <td><?= $info['goods'] ?></td>
                             <td style="color: <?= $status->getField('color') ?>; background: <?= $status->getField('background') ?>"><?= $status->getField('title') ?></td>
                             <td><?= date('d-m-Y в H:i', $info['publ_time']) ?></td>
