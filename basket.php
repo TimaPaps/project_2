@@ -159,7 +159,7 @@ $result = (new \Project\Core\Good())->getElements();
                 </div>
                 <div class="flex-box justify-content-center text-orangered margin-bottom-40">
                     <p class="margin-0 padding-5 width-45 text-align-end">Итого:</p>
-                    <p class="margin-0 padding-5 width-45">13000 руб.</p>
+                    <p class="margin-0 padding-5 width-45">1700000 руб.</p>
                 </div>
                 <div class="padding-10 margin-bottom-60 nav">  
                     <p class="margin-0 padding-10-0 text-up text-gray">Выберите способ оплаты</p>        

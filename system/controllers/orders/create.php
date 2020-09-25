@@ -52,4 +52,94 @@ if ($result) {
     var_dump ($result);
 }
 
+
+//Telegram Bot (http://api.telegram.org/bot<token>/method)
+
+$token = 'bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0';
+
+$telegram = new \Project\Core\Telegram($token);
+
+$id = 876440436;
+$text = "Поступил новый заказ";
+$photo = 'https://cdn.suwalls.com/wallpapers/cartoons/bender-futurama-26246-1920x1200.jpg';
+$latitude = 55.045671;
+$longitude = 60.107677;
+
+$telegram->sendMessage($id, $text);
+$telegram->sendPhoto($id, $photo);
+$telegram->sendLocation($id, $latitude, $longitude);
+
+
+/*
+//отправка координат
+$latitude = 55.045671;
+$longitude = 60.107677;
+$url1 = "http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendLocation?chat_id=$chat_id&latitude=$latitude&longitude=$longitude";
+file_get_contents($url1);
+*/
+
+//http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/getUpdates
+
+//$chat_id = 876440436;
+
+/*
+$text = '<pre>
+            Вам пришел заказ <b>test</b>
+                <a href="http://project_2/admin/index.php?page=orders">Посмотреть в Личном кабинете</a>    
+        </pre>';
+*/
+
+/*//несколько сообщений
+$text = 'Вам пришел заказ';
+$url = "http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendMessage?chat_id=$chat_id&text=$text&parse_mode=html";
+file_get_contents($url);
+
+$text = 'Всем привет';
+$url = "http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendMessage?chat_id=$chat_id&text=$text&parse_mode=html";
+file_get_contents($url);
+
+$text = 'Как дела?';
+$url = "http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendMessage?chat_id=$chat_id&text=$text&parse_mode=html";
+file_get_contents($url);
+*/
+
+/*
+$text = 'Вам пришел заказ';
+sendMessage($chat_id, $text);
+
+$text = 'Всем привет';
+sendMessage($chat_id, $text);
+
+$text = 'Как дела?';
+sendMessage($chat_id, $text);
+
+//функция для объединения сообщений
+function sendMessage($chat_id, $text) {
+    file_get_contents("http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendMessage?chat_id=$chat_id&text=$text&parse_mode=html");
+}
+*/
+
+/*
+function sendMessage($chat_id, $text) {
+    $url = "http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendMessage?chat_id=$chat_id&text=$text&parse_mode=html";
+    file_get_contents($url);
+}
+*/
+
+/*
+//функция для фото
+function sendPhoto($chat_id, $photo) {
+    file_get_contents("http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendPhoto?chat_id=$chat_id&photo=$photo");
+}
+
+$photo = 'https://cdn.suwalls.com/wallpapers/cartoons/bender-futurama-26246-1920x1200.jpg';
+sendPhoto($chat_id, $photo);
+*/
+
+/*
+$photo = 'https://cdn.suwalls.com/wallpapers/cartoons/bender-futurama-26246-1920x1200.jpg';
+$url_photo = "http://api.telegram.org/bot1386249536:AAF65YlrrmUIjfGQNrF29RORd_Ol6qf2tt0/sendPhoto?chat_id=$chat_id&photo=$photo";
+file_get_contents($url_photo);
+*/
+
 ?>
