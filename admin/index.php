@@ -127,6 +127,7 @@ session_start();
         </div>
       </div>
 
+<!--создание нового товара-->
       <? if (isset($_GET['new'])) { ?>
         <form action="/system/controllers/goods/create.php" method="POST" enctype="multipart/form-data" style="width: 80%">
           <div class="form-group">
@@ -165,34 +166,36 @@ session_start();
             <input type="checkbox" class="" name="is_new" value="1"> Новинка
           </div>
           <div>
-            <button type="submit" class="btn btn-primary">Создать</button>
+            <button type="submit" class="btn btn-primary">Создать товар</button>
           </div>          
         </form>
+ <!--изменение существующего в БД товара-->        
       <? } elseif (isset($_GET['change'])) { ?>
 
         <? $good = new \Project\Core\Good($_GET['id']); ?>
 
         <form action="/system/controllers/goods/update.php" method="POST" enctype="multipart/form-data" style="width: 80%">
+
           <!--скрытое поле для передачи данных в какой таблице по какому id изменить товар-->
           <input type="hidden" name="id" value="<?= $good->getField('id') ?>">
 
           <div class="form-group">
-            <input type="text" class="form-control margin-0-important" name="title" value="<?= $good->getField('title'); ?>">
+            <input type="text" class="form-control margin-0-important" name="title" value="<?= $good->getField('title') ?>">
           </div>
           <div class="form-group margin-0">
-            <input type="number" class="form-control margin-0-important" name="article" value="<?= $good->getField('article'); ?>">
+            <input type="number" class="form-control margin-0-important" name="article" value="<?= $good->getField('article') ?>">
           </div>
           <div class="form-group">
-            <input type="number" class="form-control" name="price" value="<?= $good->getField('price'); ?>"> руб.
+            <input type="number" class="form-control" name="price" value="<?= $good->getField('price') ?>"> руб.
           </div>
           <div class="form-group">
             <img src="http://project_2<?= $good->getField('photo') ?>" style="width: 200px;">
             <input type="file" class="form-control" name="photo" style="border: none;">
           </div>
 
+<!--//ручное создание ассоциативного массива-->
           <? $category = new \Project\Core\Category($good->getField('category_id')) ?>
           
-<?//ручное создание ассоциативного массива?>
           <? $arr_category = [  
             '1' => 'Женщинам',
             '2' => 'Мужчинам',
@@ -211,10 +214,11 @@ session_start();
             </select>
           </div>
 
+<!--автоматическое создание ассоциативного массива-->
           <? $type = new \Project\Core\Type($good->getField('type_id')) ?>
 
           <?php
-//автоматическое создание ассоциативного массива
+
           $connect = new \Project\Core\Connect(); 
 
           //запрос к DB
@@ -227,6 +231,7 @@ session_start();
           }                    
           //var_dump($arr_type);
           ?>
+
           <div class="form-group">
             <label for="exampleFormControlSelect1">Тип товара</label>
             <select class="form-control" name="type_id">
@@ -238,6 +243,7 @@ session_start();
               <? } ?>
             </select>
           </div>
+
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Описание товара</label>
             <textarea class="form-control" name="description" rows="3"><?= $good->getField('description'); ?></textarea>
@@ -254,6 +260,91 @@ session_start();
 
       <? } ?>
 
+<!--создание нового клиента-->
+      <? if (isset($_GET['new-user'])) { ?>
+        <form action="/system/controllers/users/create.php" method="POST" enctype="multipart/form-data" style="width: 80%">
+          <div class="form-group">
+            <input type="text" class="form-control margin-0-important" name="login" placeholder="Логин пользователя" >
+          </div>
+          <div class="form-group margin-0">
+            <input type="email" class="form-control margin-0-important" name="email" placeholder="E-mail пользователя">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Пароль пользователя">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Группа пользователей</label>
+            <select class="form-control" name="user_group">
+              <option value="1">Пользователь</option>
+              <option value="2">Менеджер</option>
+            </select>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary">Создать Клиента</button>
+          </div>          
+        </form>
+<!--изменение существующего клиента-->        
+      <? } elseif (isset($_GET['change-user'])) { ?>
+
+        <? $user = new \Project\Core\User($_GET['id']); ?>
+
+        <form action="/system/controllers/users/update.php" method="POST" enctype="multipart/form-data" style="width: 80%">
+
+          <!--скрытое поле для передачи данных в какой таблице по какому id изменить товар-->
+          <input type="hidden" name="id" value="<?= $user->getField('id') ?>">
+
+          <div class="form-group">
+            <input type="text" class="form-control margin-0-important" name="login" value="<?= $user->getField('login') ?>">
+          </div>
+          <div class="form-group margin-0">
+            <input type="email" class="form-control margin-0-important" name="email" value="<?= $user->getField('email') ?>">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" value="<?= $user->getField('password') ?>">
+          </div>
+
+<!--автоматическое создание ассоциативного массива-->
+          <? $userGroup = new \Project\Core\UserGroup($user->getField('user_group')) ?>
+
+          <?php
+
+          $connect = new \Project\Core\Connect(); 
+
+          //запрос к DB
+          $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_user_groups " );
+          //var_dump($result);
+          $arr_userGroup = [];
+          //создание ассоциативного массива с данными из DB
+          while ($row = mysqli_fetch_assoc($result)) {
+            $arr_userGroup[$row['id']] = $row['title'];
+          }                    
+          //var_dump($arr_type);
+          ?>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Группа пользователей</label>
+            <select class="form-control" name="user_group">
+              <option value="<?= $userGroup->getField('id') ?>"><?= $userGroup->getField('title') ?></option>
+              <? foreach ($arr_userGroup as $key => $value) { ?>
+                <? if ($key != $userGroup->getField('id')) { ?>
+                  <option value="<?= $key ?>"><?= $value ?></option>
+                <? } ?>
+              <? } ?>
+            </select>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary">Изменить Клиента</button>
+          </div>          
+        </form>
+      <? } else {?>
+
+      <? } ?>
+
+
+<!--страница Товары-->
       <? if (isset($_GET['page']) && $_GET['page'] == 'items') { ?>
         <div>
           <a href="?new=item" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить товар</a>
@@ -290,8 +381,9 @@ session_start();
                         <td><?= $info['id'] ?></td>
                         <td>
                           <a href="?change=item&id=<?= $info['id'] ?>" target="_blank">
-                            <?= $info['title'] ?></td>  
+                            <?= $info['title'] ?> 
                           </a>
+                        </td> 
                         <td><?= $info['price'] ?></td>
                         <td><?= $info['article'] ?></td>
                         <td><?= $info['description'] ?></td>
@@ -306,7 +398,11 @@ session_start();
         <div>
           <a href="?new=item" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить товар</a>
         </div>
+<!--страница Клиенты-->        
       <? } elseif (isset($_GET['page']) && $_GET['page'] == 'users') { ?>
+        <div>
+          <a href="?new-user=user" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить Клиента</a>
+        </div>
         <h2>Клиенты</h2>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
@@ -332,7 +428,11 @@ session_start();
                     ?>
                       <tr>
                           <td><?= $info['id'] ?></td>
-                          <td><?= $info['login'] ?></td>
+                          <td>
+                            <a href="?change-user=item&id=<?= $info['id'] ?>" target="_blank">
+                              <?= $info['login'] ?> 
+                            </a>
+                          </td>
                           <td><?= $info['email'] ?></td>
                           <td><?= $group->getField('title') ?></td>
                       </tr>
@@ -340,7 +440,11 @@ session_start();
             </tbody>
           </table>
         </div>
-        <? } elseif (isset($_GET['page']) && $_GET['page'] == 'orders') { ?>
+        <div>
+          <a href="?new-user=user" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить Клиента</a>
+        </div>
+<!--страница Заказы-->        
+        <? } elseif (isset($_GET['page']) && $_GET['page'] == 'orders') { ?> 
           <h2>Заказы</h2>
           <div class="table-responsive">
             <table class="table table-striped table-sm">

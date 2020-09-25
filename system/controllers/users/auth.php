@@ -21,7 +21,7 @@ if ($user['id']) {
             //создание куки со сроком жизни 8 часов
             setcookie('user_id', $user['id'], time() + 28800, '/');
             //редирект
-            header('location: http://project_2/admin/index.php');
+            header('location: http://project_2/admin/index.php?page=orders');
         } else {
             //echo "Вы успешно авторизовались " . $user['login'];
             //создание куки со сроком жизни 1 час
