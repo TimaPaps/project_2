@@ -12,7 +12,7 @@ session_start();
             <a class="<? if(isset($_GET['category_id']) && $_GET['category_id'] == 2) { ?> is-bold <? } ?>" href="/catalog.php?category_id=2">Мужчинам</a>
             <a class="<? if(isset($_GET['category_id']) && $_GET['category_id'] == 3) { ?> is-bold <? } ?>" href="/catalog.php?category_id=3">Детям</a>
             <a class="<? if(isset($_GET['is_new']) && $_GET['is_new'] == 1) { ?> is-bold <? } ?>" href="/catalog.php?is_new=1">Новинки</a>
-            <a href="#">О нас</a>
+            <a href="/google_map.php">О нас</a>
         </div>
     </div>
     <div class="flex-box header-user">

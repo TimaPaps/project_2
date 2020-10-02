@@ -1,3 +1,4 @@
+//AJAX запрос
 function renderGoods() {
     // создание нового экземпляра класса для запросов
     let xhr = new XMLHttpRequest();
@@ -104,4 +105,24 @@ function fromBasket() {
     }
 
     xhr.send(null);
+}
+
+
+//AJAX запрос для получения массива данных для отображения меток на картах яндекс и гугл
+function getShops () {
+    // создание нового экземпляра класса для запросов
+    let xhr = new XMLHttpRequest();
+
+    //формирование url
+    let url = 'http://project_2/api/1.0/shops/get/all/index.php';
+
+    //запуск метода open() для установки параметров запроса (метод GET, куда - HTTP....., если true - то запрос асинхронный, иначе запрос синхронный(для того чтобы сперва получить ответ, а потом продолжить выполнение кода JS))
+    xhr.open('GET', url, false);
+    //отправляем запрос
+    xhr.send();
+
+    //console.log(xhr.responseText);
+
+    //при возвращении запроса происходит запись данных в свойство responseText из массива $arr файла api/1.0/shops/get/all/index.php
+    return xhr.responseText;
 }

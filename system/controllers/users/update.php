@@ -15,6 +15,14 @@ var_dump($pass);
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 
+//подключаемся к БД
+$connect = new \Project\Core\Connect();
+
+$result = mysqli_query($connect->getConnection(), "SELECT * FROM core_users WHERE id=$id ");
+$user = mysqli_fetch_assoc($result);
+
+//var_dump($user['password']);
+
 //автоматическое получение данных из полей формы 
 //подготовка массивов полей и значений
 $arr_fields = [];
@@ -22,30 +30,32 @@ $arr_values = [];
 
 //разбор всех пришедших данных
 foreach ($_POST as $key => $value) {
-/*  //вариант Тимофей
+/*
+    //вариант Тимофея
     if ($key != 'id') {
         $arr_fields[] = $key;       
-   
-        if ($key == 'password') {
+    
+        if ($key == 'password' && $value != $user['password']) {
             $arr_values[] = "'" . crypt($value) . "'";
-            var_dump($arr_values);
+            //var_dump($arr_values);
         } else {
             $arr_values[] = "'" . $value . "'";
-            var_dump($arr_values);
+            //var_dump($arr_values);
         }
     } 
-    */
+*/       
     //мой вариант
     if ($key != 'id') {
         $arr_fields[] = $key;
         $arr_values[] = "'" . $value . "'";  
         //var_dump($arr_values);
     } 
-    if ($key == 'password') {
+    if ($key == 'password' && $value != $user['password']) {
         $arr_values[count($arr_values)-1] = "'" . crypt($value) . "'";
         //var_dump($arr_values);
-    }    
+    }   
 }
+
 
 //var_dump($arr_fields);
 //var_dump($arr_values);

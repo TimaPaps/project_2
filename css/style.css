@@ -448,3 +448,8 @@
     padding: 5px;
     box-sizing: border-box;
 }
+
+/*фото для гео-карт*/
+.geo-photo-size {
+    max-width: 300px !important;
+}

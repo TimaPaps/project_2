@@ -25,7 +25,7 @@
             </div>
             <div class="padding-30">
                 <h3>МАГАЗИН</h3>
-                <a href="#">О нас</a>
+                <a href="/yandex_map.php">О нас</a>
                 <a href="#">Доставка</a>
                 <a href="#">Работа с нами</a>
                 <a href="#">Контакты</a>

@@ -7,10 +7,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 $login = $_GET['login'];
 $password = $_GET['password']; 
 
-//подключаемся к БД и записываем
-    //подключение файла
+//подключаемся к БД
 $connect = new \Project\Core\Connect();
-//
+
 $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_users WHERE login='$login' OR email='$login' ");
 $user = mysqli_fetch_assoc($result);
 
