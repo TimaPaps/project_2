@@ -32,22 +32,20 @@ $result = (new \Project\Core\Article())->getElements();
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <?php
                     $article = new \Project\Core\Article($row['id']);
-                    //echo $row['id'];
-                    //добавляем $row['id'] в аргумент при создании экземпляра класса Article используя в index.php метод public function __construct($id) и убираем строку $article->getId($row['id']);
-                    //убираем строку используя переопределение метода setTable из Unit в Article   $article->getTable('core_articles');  ////вызов метода с пробросом названия нужной таблицы в класс Unit с универсальным методом для выбора нужной таблицы из DB
-                    /*$article->id;
-                    $article->id = 5;*/
-
-/* если класс родитель Unit не абстрастный, то можно используя его самого вывести данные, т.е. можно создать экземпляр класса
-    если он абстрактный, то создать экземпляр класса нельзя
-                    $article = new Unit();
-                    $article->getId($row['id']);
-                    $article->getTable('core_articles');
-*/
                 ?>
                 <div class="main-article" style="background-image: url('<?= $article->getField('photo') ?>')">
                     <div>
+                        <? if ($row['id'] == 5 || $row['id'] == 9) { ?>
+                            <div class="flex-box padding-5">
+                                <div class="main-article-arrow"></div>
+                            </div>                                
+                        <? } ?>
                         <div class="padding-5">
+                            <? if ($row['id'] == 3 || $row['id'] == 7) { ?>
+                               <div class="flex-box">
+                                    <div class="main-article-logo"></div>
+                               </div>                                
+                            <? } ?>
                             <p class="text-up text-20px margin-0">
                                 <?= $article->title() ?>
                             </p>            
@@ -59,56 +57,31 @@ $result = (new \Project\Core\Article())->getElements();
                 </div>   
             <?php endwhile; ?>
         </div>
-
-        
-        <!--<div class="flex-box flex-wrap margin-top-30">
-            ?php while($row = mysqli_fetch_assoc($result)): ?>
-                <div class="main-article" style="background-image: url('?= $row['photo'] ?>')">
-                    <div>
-                        <div class="padding-10">
-                            <b>
-                                ?= $row['title'] ?>
-                            </b>            
-                        </div>
-                        <div class="padding-10">
-                            ?= $row['description'] ?>
-                        </div>
-                    </div>
-                </div>   
-            ?php endwhile; ?>
-        </div>-->
-
-        <!--<div class="flex-box margin-top-30">
-            <div class="main-item">
-                <div class="main-photo-1 main-photo-rectangle"></div>
-                <div class="main-photo-5 main-photo-square"></div>
-            </div>
-            <div class="main-item">
-                <div class="main-background-light-gray main-photo-square"></div>
-                <div class="main-photo-2 main-photo-square"></div>
-                <div class="main-background-gray main-photo-square"></div>
-            </div>
-            <div class="main-item">
-                <div class="main-photo-3 main-photo-square"></div>
-                <div class="main-background-light-gray main-photo-square"></div>
-                <div class="main-photo-6 main-photo-square"></div>
-            </div>
-            <div class="main-item">
-                <div class="main-background-gray main-photo-square"></div>
-                <div class="main-photo-4 main-photo-rectangle"></div>
-            </div>
-        </div>-->
         <div class="text-align-center margin-top-100">
             <h2>БУДЬ ВСЕГДА В КУРСЕ ВЫГОДНЫХ ПРЕДЛОЖЕНИЙ</h2>
             <p class="text-i">подписывайся и следи за новинками и выгодными предложениями.</p>
         </div>
         <div class="flex-box justify-content-center margin-top-40">
-            <form action="" method="POST" class="border-1px">
-                <input class="text-i" type="email" name="email" id="" placeholder="e-mail">
-                <input type="submit" value="записаться">
+            <form action="/system/controllers/users/mailing.php" method="POST" class="border-1px">
+                <input class="text-i main-form-email" type="email" name="email"placeholder="e-mail">
+                <input type="submit" value="подписаться!">
             </form>
         </div>
-        <p class="text-align-center text-i-red">Некорректный e-mail. Попробуйте еще раз.</p>
+        <?php if (isset($_GET['wrong'])): ?>
+            <div class="padding-5 text-align-center text-i-red">
+                Некорректный e-mail. Попробуйте еще раз.
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_GET['inDatabase'])): ?>
+            <div class="padding-5 text-align-center text-i-red">
+                Такой email уже получает рассылки нашего магазина
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_GET['success'])): ?>
+            <div class="padding-5 text-align-center text-i-red">
+                Поздравляем, Вы успешно подписались!
+            </div>
+        <?php endif; ?>
     </main>
 <?php
     include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');

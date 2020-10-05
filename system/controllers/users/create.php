@@ -14,7 +14,6 @@ $password = crypt($_POST['password']); //crypt() - шифрует символы
 $user_group = $_POST['user_group'];
 
 //подключаемся к БД и записываем
-    //подключение файла
 $connect = new \Project\Core\Connect();
 //проверка на наличие в БД таких логинов или паролей
 $result = mysqli_query($connect->getConnection(), "SELECT COUNT(id) as num FROM core_users WHERE login='$login' OR email='$email' ");
