@@ -28,7 +28,11 @@ function renderGoods() {
 }
 
 //показ гифки предзагрузки пока работает задержка времени для старта функции renderGoods
-document.getElementById('catalog').innerHTML = '<img src="/img/preloader.gif"/>';
+document.getElementById('catalog').innerHTML = `
+                                                    <div class="flex-box justify-content-center">
+                                                        <img src="/img/preloader.gif"/>
+                                                    </div>
+                                                `;
 //задержка времени перед стартом функции renderGoods
 setTimeout(function() {
     renderGoods();
@@ -78,6 +82,7 @@ function fromBasket() {
 
     //получаем id товара
     let id = event.target.getAttribute('data-id');
+
     //скрываем товар визуально
     event.target.closest('.basket-row').remove();
 
@@ -86,7 +91,7 @@ function fromBasket() {
 
     //формирование url
     let url = 'http://project_2/system/controllers/basket/from_basket.php';
-    let str_get = '?id='+id;
+    let str_get = '?id=' + id;
     url = url + str_get;
     //console.log(url);
 
@@ -107,7 +112,6 @@ function fromBasket() {
     xhr.send(null);
 }
 
-
 //AJAX запрос для получения массива данных для отображения меток на картах яндекс и гугл
 function getShops () {
     // создание нового экземпляра класса для запросов
@@ -126,3 +130,5 @@ function getShops () {
     //при возвращении запроса происходит запись данных в свойство responseText из массива $arr файла api/1.0/shops/get/all/index.php
     return xhr.responseText;
 }
+
+//получение суммы товаров из корзины

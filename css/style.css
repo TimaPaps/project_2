@@ -193,7 +193,7 @@
     cursor: pointer;
 }
 .display-none {
-    display: none;
+    display: none; 
 }
 .display-block {
     display: block;
@@ -257,11 +257,7 @@ button:focus {
     cursor: pointer;
     color: white;
 }
-/*
-.main-item {
-    width: 25%;
-}
-*/
+
 .main-article {
     width: 25%;
     height: 300px;
@@ -279,10 +275,6 @@ button:focus {
 .main-article:nth-child(3),
 .main-article:nth-child(7) {
     background: rgb(187, 187, 187);
-}
-.main-article:nth-child(8) {
-    background: rgba(128, 128, 128, 0.76) center center / cover;
-    z-index: 2;
 }
 
 .main-article-logo {
@@ -358,8 +350,7 @@ button:focus {
     position: absolute;
     top: 16px;
     right: 0;
-    border: 8px solid transparent; 
-    border-top: 8px solid black;
+    border: 8px solid transparent; border-top: 8px solid black;
     transition: 500ms;
 }
 .filters-btn:hover:before {
@@ -423,7 +414,12 @@ button:focus {
     width: 100px;
     height: 100px; 
 }
-.select-pay {
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;    
+    outline: none;
     border: 1px solid black;
     padding: 10px;
     box-sizing: border-box;
@@ -432,17 +428,32 @@ button:focus {
     cursor: pointer;
     position: relative;
 }
-.select-pay:before {
+.select {
+    position: relative;
+}
+.select-before:before {
     content: "";
     position: absolute;
-    top: 16px;
-    right: 10px;
+    top: 65px;
+    right: 20px;
     border: 8px solid transparent; border-top: 8px solid black;
+    transition: 500ms;
+    display: block;
 }
+.select-before:hover:before {
+    transform: rotate(-360deg);
+}
+
 .arrow-down {
     background: url('/img/arrow-down.svg') ;
     height: 20px;
     width: 20px;
+}
+.good-delete-icon {
+    background: url('/img/icons/close.svg') center center / contain no-repeat;
+    width: 15px;
+    height: 15px;
+    z-index: 0;
 }
 
 /*блок форма авторизации и регистрации*/

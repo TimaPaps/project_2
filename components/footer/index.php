@@ -5,23 +5,22 @@
                 //вывод в цикле ссылок на категории
                     $connect = new \Project\Core\Connect();
                     $categories = mysqli_query($connect->getConnection(), " SELECT * FROM categories ");
+
                     while ($category = mysqli_fetch_assoc($categories)) { 
+
                         //подсчет кол-ва товаров по категориям
                         $count = mysqli_query($connect->getConnection(), " SELECT COUNT(*) as num FROM core_goods WHERE category_id= " . $category['id']);
                         $info = mysqli_fetch_assoc($count);                
                 ?>
-                <a href="catalog.php?category_id=<?= $category['id'] ?>"><?= $category['title'] ?>(<?= $info['num'] ?>)</a>
+                <a href="/catalog.php?category_id=<?= $category['id'] ?>"><?= $category['title'] ?>(<?= $info['num'] ?>)</a>
+
                 <?php } ?>
+                
                 <?php
                     $count = mysqli_query($connect->getConnection(), " SELECT COUNT(*) as num FROM core_goods WHERE is_new = 1 ");
                     $info = mysqli_fetch_assoc($count);
                 ?>
-                <a href="catalog.php?is_new=1">Новинки (<?= $info['num']?>)</a>
-                <!--<div class="padding-5">Новинки (<?= $info['num']?>)</div>
-                <a href="catalog.php?category_id=1">Женщинам</a>
-                <a href="catalog.php?category_id=2">Мужчинам</a>
-                <a href="catalog.php?category_id=3">Детям</a>
-                <a href="#">Новинки</a>-->
+                <a href="/catalog.php?is_new=1">Новинки (<?= $info['num']?>)</a>
             </div>
             <div class="padding-30">
                 <h3>МАГАЗИН</h3>
