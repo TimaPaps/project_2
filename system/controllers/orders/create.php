@@ -14,8 +14,16 @@ $arr_values = [];
 
 foreach ($_GET as $key => $value) {
     $arr_fields[] = $key;
-    $arr_values[] = "'" . $value . "'";
+    if ($key == 'city_index' && $value == '') {
+        $value = 0;
+        $arr_values[] = "'" . $value . "'";
+    } else {
+        $arr_values[] = "'" . $value . "'";
+    }    
 }
+
+//var_dump($arr_fields);
+//var_dump($arr_values);
 
 $arr_fields[] = 'goods';
 $arr_values[] = "'" . json_encode($_SESSION['basket']) . "'";
@@ -49,7 +57,7 @@ if ($result) {
     echo 'Ваш заказ успешно оформлен';
 } else {
     echo 'что то пошло не так';
-    var_dump ($result);
+    //var_dump ($result);
 }
 
 

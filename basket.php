@@ -5,11 +5,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 
-
 $result = (new \Project\Core\Good())->getElements();
 
 $summ = 0;
-$total = 0;
 
 ?>
 
@@ -23,7 +21,7 @@ $total = 0;
 
         <? if (isset($_SESSION['basket']) && count($_SESSION['basket'])) { ?>
 
-            <div class="basket-row padding-5-30 text-up text-12px text-gray">
+            <div id="reset" class="basket-row padding-5-30 text-up text-12px text-gray">
                 <div class="flex-box width-40">
                     <div class="padding-10 width-40">Фото</div>
                     <div class="padding-10">Наименование</div>
@@ -71,28 +69,28 @@ $total = 0;
                             <?= $good->price() ?> руб.
                         </div>
                         <div class="flex-box justify-content-center width-20 padding-10">
-                            <div class="good-delete-icon cursor-pointer" data-id="<?= $id ?>" onclick="fromBasket()"></div>
+                            <div class="good-delete-icon cursor-pointer" data-id="<?= $id ?>" onclick="fromBasket(), getSumm()"></div>
                         </div>
                     </div>
                 </div>   
     
             <?php endforeach; ?>
 
-            <div class="flex-box justify-content-center padding-30">
+            <div id="summ-one-block" class="flex-box justify-content-center padding-30">
                 <p class="margin-0 padding-5 width-45 text-align-end">Стоимость:</p>
-                <p class="margin-0 padding-5 width-45 text-orangered"><?= $summ ?> руб.</p>
+                <p id="summ-one" class="margin-0 padding-5 width-45 text-orangered"><?= $summ ?> руб.</p>
             </div>
-            <div class="text-align-center margin-top-30 padding-10 text-orange-important">
+            <div id="basket-delete" class="text-align-center margin-top-30 padding-10 text-orange-important">
                 <a href="system/controllers/basket/clear_basket.php">очистить корзину</a>
             </div>
 
-        <? } else { ?>
+        <?php } else { ?>
 
             <div class="text-align-center">
                 <p class="padding-30">Ваша корзина пуста</p> 
             </div>
 
-        <? } ?>
+        <?php } ?>
 
     </div>    
     <div class="flex-box justify-content-center margin-40">
@@ -106,7 +104,10 @@ $total = 0;
     </div>
     <div class="text-align-center margin-bottom-40">
         <h2 class="text-up h2-32px">Адрес доставки</h2>
-        <p class="text-i">Все поля обязательны для заполнения</p>
+        <div class="flex-box justify-content-center">
+            <p class="text-red">&#9728</p>
+            <p class="text-i">Поля обязательные для заполнения</p>            
+        </div>
     </div>
     <!--форма отправки данных покупателя-->
     <form class="wrapper-700" action="/system/controllers/orders/create.php" method="GET">
@@ -117,13 +118,13 @@ $total = 0;
                     <option value="delivery-service">Курьерская служба - 500 руб.</option>
                     <option value="delivery-post">Почта России - оплата при получении</option>
                     <option value="delivery-transport-company">Транспортная компания - оплата при получении</option>
-                </select>  
+                </select>
             </div>
         </div>
         <div class="flex-box space-between">
             <div class="width-45">
                 <p class="margin-0 padding-10">Имя</p>
-                <input class="width-100" required type="text" name="first_name">
+                <input class="width-100" required type="text" name="first_name" placeholder="&#9728">
             </div>
             <div class="width-45">
                 <p class="margin-0 padding-10">Фамилия</p>
@@ -147,11 +148,11 @@ $total = 0;
         <div class="flex-box space-between">
             <div class="width-45">
                 <p class="margin-0 padding-10">Телефон</p>
-                <input class="width-100" required type="tel" name="phone">
+                <input class="width-100" required type="tel" name="phone" placeholder="&#9728">
             </div>
             <div class="width-45">
                 <p class="margin-0 padding-10">E-mail</p>
-                <input class="width-100" required type="email" name="email">
+                <input class="width-100" required type="email" name="email" placeholder="&#9728">
             </div>
         </div>
         <div class="flex-box justify-content-center margin-40">
@@ -165,30 +166,36 @@ $total = 0;
         </div>
         <div class="text-align-center margin-bottom-40">
             <h2 class="text-up h2-32px">Варианты оплаты</h2>
-            <p class="text-i">Все поля обязательны для заполнения</p>
+            <!--<p class="text-i">Все поля обязательны для заполнения</p>-->
         </div>
         <div class="flex-box justify-content-center">
             <div class="width-100">
-                <div class="flex-box justify-content-center">
+
+            <? if (isset($_SESSION['basket']) && count($_SESSION['basket'])) { ?>
+
+                <div id="summ-two-block" class="flex-box justify-content-center">
                     <p class="margin-0 padding-5 width-45 text-align-end">Стоимость:</p>
-                    <p class="margin-0 padding-5 width-45"><?= $summ ?> руб.</p>
+                    <p id="summ-two" class="margin-0 padding-5 width-45"><?= $summ ?> руб.</p>
                 </div>
-                <div class="flex-box justify-content-center">
+                <div id="delivery-prise" class="flex-box justify-content-center">
                     <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
                     <p class="margin-0 padding-5 width-45">500 руб.</p> <br>
                 </div>
-                <div class="flex-box justify-content-center text-orangered margin-bottom-40">
+                <div id="summ-total-block" class="flex-box justify-content-center text-orangered margin-bottom-40">
                     <p class="margin-0 padding-5 width-45 text-align-end">Итого:</p>
-                    <p class="margin-0 padding-5 width-45"><?= $total = $summ + 500?> руб.</p>
+                    <p id="summ-total" class="margin-0 padding-5 width-45"><?= $summ = $summ + 500?> руб.</p>
                 </div>
+
+            <?php } ?>
+
                 <div class="select padding-10 margin-bottom-60 nav">  
                     <p class="margin-0 padding-10-0 text-up text-gray">Выберите способ оплаты</p>
                     <div class="select-before">
-                        <select name="pay[]">
+                        <select name="pay">
                             <option value="pay-card">Банковская карта</option>
                             <option value="pay-post">Наложенный платеж</option>
                             <option value="pay-money">Наличными при получении</option>
-                        </select>  
+                        </select>
                     </div>
                 </div>
             </div>

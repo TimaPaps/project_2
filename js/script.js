@@ -106,6 +106,7 @@ function fromBasket() {
             //делаем с ответом то что нам надо - ответ лежит в свойстве responseText этого объекта,т.е. верстка из .../catalog/index.php
             //alert(xhr.responseText);
             document.getElementById('basket-count').innerHTML = xhr.responseText;
+            //document.getElementById('summa').innerHTML = xhr.responseText;
         }
     }
 
@@ -131,4 +132,36 @@ function getShops () {
     return xhr.responseText;
 }
 
-//получение суммы товаров из корзины
+//изменение суммы товаров в корзине при удалении товаров из корзины
+function getSumm () {
+    // создание нового экземпляра класса для запросов
+    let xhr = new XMLHttpRequest();
+
+     //запуск метода open() для установки параметров запроса (метод GET, куда - HTTP....., если true - то запрос асинхронный, иначе запрос синхронный)
+    xhr.open('GET', 'http://project_2/system/controllers/basket/getSumm.php', true);
+
+    //при получении ответа на запрос
+    xhr.onreadystatechange = function() {
+        //если ответ положительный     
+        if (xhr.readyState == 4 && xhr.status == 200)  {
+            alert(xhr.responseText);
+            //не равен строке - reset   
+            if (xhr.responseText != "reset") {
+                //заменяю сумму 
+                document.getElementById('summ-one').innerHTML = xhr.responseText + ' руб.';
+                document.getElementById('summ-two').innerHTML = xhr.responseText + ' руб.';
+                document.getElementById('summ-total').innerHTML = Number(xhr.responseText) + 500 + ' руб.';                         
+            } else {
+                //убираю и заменяю элементы со страницы
+                document.getElementById('reset').innerHTML = '';
+                document.getElementById('summ-one-block').innerHTML = 'Ваша корзина пуста';
+                document.getElementById('basket-delete').innerHTML = '';
+                document.getElementById('summ-two-block').innerHTML = '';
+                document.getElementById('delivery-prise').innerHTML = '';
+                document.getElementById('summ-total-block').innerHTML = '';
+            }
+        }
+    }
+
+    xhr.send(null);
+}
