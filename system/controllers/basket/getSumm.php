@@ -7,18 +7,13 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 
 $summ = 0;
 
-if (isset($_SESSION['basket']) && count($_SESSION['basket'])) {
-
+if (isset($_SESSION['basket'])) {
     foreach($_SESSION['basket'] as $id) {        
         $good = new \Project\Core\Good($id);
         $summ += $good->price();
    }
 
 echo $summ;
-
-} else {
-
-    echo "reset";
 
 }
 

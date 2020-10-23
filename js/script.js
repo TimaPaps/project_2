@@ -144,9 +144,9 @@ function getSumm () {
     xhr.onreadystatechange = function() {
         //если ответ положительный     
         if (xhr.readyState == 4 && xhr.status == 200)  {
-            alert(xhr.responseText);
+            //alert(xhr.responseText);
             //не равен строке - reset   
-            if (xhr.responseText != "reset") {
+            if (Number(xhr.responseText) != 0) {
                 //заменяю сумму 
                 document.getElementById('summ-one').innerHTML = xhr.responseText + ' руб.';
                 document.getElementById('summ-two').innerHTML = xhr.responseText + ' руб.';
