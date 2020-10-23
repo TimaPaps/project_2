@@ -133,12 +133,12 @@ function getShops () {
 }
 
 //изменение суммы товаров в корзине при удалении товаров из корзины
-function getSumm () {
+function get_summ () {
     // создание нового экземпляра класса для запросов
     let xhr = new XMLHttpRequest();
 
      //запуск метода open() для установки параметров запроса (метод GET, куда - HTTP....., если true - то запрос асинхронный, иначе запрос синхронный)
-    xhr.open('GET', 'http://project_2/system/controllers/basket/getSumm.php', true);
+    xhr.open('GET', 'http://project_2/system/controllers/basket/get_summ.php', true);
 
     //при получении ответа на запрос
     xhr.onreadystatechange = function() {

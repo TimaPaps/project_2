@@ -69,7 +69,7 @@ $summ = 0;
                             <?= $good->price() ?> руб.
                         </div>
                         <div class="flex-box justify-content-center width-20 padding-10">
-                            <div class="good-delete-icon cursor-pointer" data-id="<?= $id ?>" onclick="fromBasket(), getSumm()"></div>
+                            <div class="good-delete-icon cursor-pointer" data-id="<?= $id ?>" onclick="fromBasket(), get_summ()"></div>
                         </div>
                     </div>
                 </div>   
