@@ -132,8 +132,9 @@ function getShops () {
     return xhr.responseText;
 }
 
-//изменение суммы товаров в корзине при удалении товаров из корзины
-function get_summ () {
+//изменение суммы товаров в корзине при удалении товаров из корзины и при изменении способа доставки
+function getSumm () {
+
     // создание нового экземпляра класса для запросов
     let xhr = new XMLHttpRequest();
 
@@ -142,22 +143,46 @@ function get_summ () {
 
     //при получении ответа на запрос
     xhr.onreadystatechange = function() {
+
         //если ответ положительный     
         if (xhr.readyState == 4 && xhr.status == 200)  {
             //alert(xhr.responseText);
-            //не равен строке - reset   
-            if (Number(xhr.responseText) != 0) {
+            //и не равен - 0   
+            if (Number(xhr.responseText) != 0) {           
+
+                let indexSelect = document.getElementById('delivery-select').options.selectedIndex;
+                let priceDelivery = 500;
+
                 //заменяю сумму 
                 document.getElementById('summ-one').innerHTML = xhr.responseText + ' руб.';
                 document.getElementById('summ-two').innerHTML = xhr.responseText + ' руб.';
-                document.getElementById('summ-total').innerHTML = Number(xhr.responseText) + 500 + ' руб.';                         
+                if (indexSelect == 0) {
+                    document.getElementById('summ-total').innerHTML = Number(xhr.responseText) + priceDelivery + ' руб.';
+                    document.getElementById('delivery-price'). innerHTML = '';
+                    document.getElementById('delivery-price-ajax').innerHTML = `
+                                                                    <div id="delivery-price" class="flex-box justify-content-center">
+                                                                        <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
+                                                                        <p class="margin-0 padding-5 width-45">500 руб.</p>
+                                                                    </div>
+                                                                `;
+                } else {
+                    document.getElementById('summ-total').innerHTML = xhr.responseText + ' руб.';
+                    document.getElementById('delivery-price'). innerHTML = '';
+                    document.getElementById('delivery-price-ajax').innerHTML = `
+                                                                    <div id="delivery-price" class="flex-box justify-content-center">
+                                                                        <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
+                                                                        <p class="margin-0 padding-5 width-45">оплата при получении</p>
+                                                                    </div>
+                                                                `;
+                }
+                        
             } else {
                 //убираю и заменяю элементы со страницы
                 document.getElementById('reset').innerHTML = '';
                 document.getElementById('summ-one-block').innerHTML = 'Ваша корзина пуста';
                 document.getElementById('basket-delete').innerHTML = '';
                 document.getElementById('summ-two-block').innerHTML = '';
-                document.getElementById('delivery-prise').innerHTML = '';
+                document.getElementById('delivery-price').innerHTML = '';
                 document.getElementById('summ-total-block').innerHTML = '';
             }
         }
@@ -165,3 +190,31 @@ function get_summ () {
 
     xhr.send(null);
 }
+
+/*
+//отображение в корзине стоимости доставки
+function getValueSelect () {
+
+    let indexSelect = document.getElementById('delivery-select').options.selectedIndex;
+
+
+    if (indexSelect == 0) {
+        //alert(value);
+        document.getElementById('delivery-price-ajax').innerHTML = `
+                                                        <div id="delivery-price" class="flex-box justify-content-center">
+                                                            <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
+                                                            <p class="margin-0 padding-5 width-45">500 руб.</p>
+                                                        </div>
+                                                    `;
+    } else {
+        //document.getElementById('delivery-price-ajax').innerHTML = '4';
+        document.getElementById('delivery-price'). innerHTML = '';
+        document.getElementById('delivery-price-ajax').innerHTML = `
+                                                        <div id="delivery-price" class="flex-box justify-content-center">
+                                                            <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
+                                                            <p class="margin-0 padding-5 width-45">оплата при получении</p>
+                                                        </div>
+                                                    `;
+    }  
+}
+*/

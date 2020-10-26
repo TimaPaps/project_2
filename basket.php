@@ -69,7 +69,7 @@ $summ = 0;
                             <?= $good->price() ?> руб.
                         </div>
                         <div class="flex-box justify-content-center width-20 padding-10">
-                            <div class="good-delete-icon cursor-pointer" data-id="<?= $id ?>" onclick="fromBasket(), get_summ()"></div>
+                            <div class="good-delete-icon cursor-pointer" data-id="<?= $id ?>" onclick="fromBasket(), getSumm()"></div>
                         </div>
                     </div>
                 </div>   
@@ -114,10 +114,10 @@ $summ = 0;
         <div class="select padding-10 margin-bottom-60 nav">  
             <p class="margin-0 padding-10-0 text-up text-gray">Выберите вариант доставки</p>
             <div class="select-before">
-                <select name="delivery">
+                <select name="delivery" id="delivery-select" onChange='getSumm()'>
                     <option value="delivery-service">Курьерская служба - 500 руб.</option>
-                    <option value="delivery-post">Почта России - оплата при получении</option>
-                    <option value="delivery-transport-company">Транспортная компания - оплата при получении</option>
+                    <option value="delivery-post">Почта России</option>
+                    <option value="delivery-transport-company">Транспортная компания</option>
                 </select>
             </div>
         </div>
@@ -177,10 +177,11 @@ $summ = 0;
                     <p class="margin-0 padding-5 width-45 text-align-end">Стоимость:</p>
                     <p id="summ-two" class="margin-0 padding-5 width-45"><?= $summ ?> руб.</p>
                 </div>
-                <div id="delivery-prise" class="flex-box justify-content-center">
+                <div id="delivery-price-ajax"></div>
+                <div id="delivery-price" class="flex-box justify-content-center">
                     <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
-                    <p class="margin-0 padding-5 width-45">500 руб.</p> <br>
-                </div>
+                    <p class="margin-0 padding-5 width-45">500 руб.</p>
+                </div>   
                 <div id="summ-total-block" class="flex-box justify-content-center text-orangered margin-bottom-40">
                     <p class="margin-0 padding-5 width-45 text-align-end">Итого:</p>
                     <p id="summ-total" class="margin-0 padding-5 width-45"><?= $summ = $summ + 500?> руб.</p>
@@ -203,6 +204,7 @@ $summ = 0;
         <div class="flex-box justify-content-center">
             <button class="btn-10-30-orange margin-top-40 margin-bottom-40">Заказать</button>
         </div>
+
     </form>
 </main>
 
