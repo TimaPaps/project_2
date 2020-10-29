@@ -58,12 +58,16 @@ $summ = 0;
                             </div>         
                         </div>
                     </div>
-                    <div class="flex-box width-60 justify-content-flex-end text-align-center">
+                    <div class="flex-box width-60 justify-content-flex-end align-items-center text-align-center">
                         <div class="width-20 padding-10">
                             M
                         </div>
-                        <div class="width-20 padding-10">
-                            3
+                        <div class="flex-box justify-content-center align-items-center width-20 padding-10">
+                            <div id="quantity" class="padding-5">1</div>
+                            <div>
+                                <div id="quantity-plus" class="quantity quantity-plus" data-id-quantity-plus="<?= $id ?>" onclick="quantityPlus()"></div>
+                                <div id="quantity-minus" class="quantity quantity-minus"></div>
+                            </div>
                         </div>
                         <div class="width-20 padding-10">
                             <?= $good->price() ?> руб.

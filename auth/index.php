@@ -7,7 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 
 ?>
 
-<div class="wrapper flex-box text-align-center">
+<div class="wrapper margin-80-auto flex-box text-align-center">
     <form class="form" action="../system/controllers/users/auth.php" method="GET">
         <div>
             <input required type="text" name="login" placeholder="Логин или E-mail">

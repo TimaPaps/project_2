@@ -46,6 +46,12 @@
 .margin-40 {
     margin: 40px;
 }
+.margin-50-auto {
+    margin: 50px auto;
+}
+.margin-80-auto {
+    margin: 80px auto;
+}
 .margin-left-30 {
     margin-left: 30px;
 }
@@ -150,7 +156,7 @@
 .text-orangered {
     color: orangered;
 }
-.text-orange-important a{
+.text-orange-important a {
     color: orange !important;
 }
 .is-bold {
@@ -162,20 +168,20 @@
 .btn-10-30 {
     padding: 10px 30px;
     border: 1px solid black;
-    display: inline-block;  
-    cursor: pointer; 
+    display: inline-block;
+    cursor: pointer;
 }
 .btn-10-30-orange {
     padding: 10px 30px;
     background: orange;
     color: white;
     border: none;
-    display: inline-block;  
-    cursor: pointer; 
+    display: inline-block;
+    cursor: pointer;
 }
 .border-1px {
     border: 1px solid black;
-    display: inline-block;   
+    display: inline-block;
 }
 .nav-white a {
     text-decoration: none;
@@ -193,7 +199,7 @@
     cursor: pointer;
 }
 .display-none {
-    display: none; 
+    display: none;
 }
 .display-block {
     display: block;
@@ -205,21 +211,21 @@
 input:active, /*убирает стандартную обводку при клике в поле*/
 input:focus, 
 button:active, 
-button:focus {  
-    outline: none; 
+button:focus {
+    outline: none;
 }
 .background-ligth-gray {
     background: rgb(177, 177, 177);
 }
 input[type="number"]::-webkit-outer-spin-button, /*убирает стрелки в поле*/
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 ::placeholder {
     color: red;
     opacity: 1;
-  }
+}
 
 /*блок header*/
 .header-logo {
@@ -259,7 +265,7 @@ input[type="number"]::-webkit-inner-spin-button {
     border: none !important;
     margin: 0 !important;
 }
-[type="submit"] {
+[type='submit'] {
     background: orange;
     border: none;
     padding: 10px;
@@ -287,7 +293,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .main-article-logo {
-    background: url(/img/icons/attention-sign-outline.png) center center / cover no-repeat;
+    background: url(/img/icons/attention-sign-outline.png) center center / cover
+        no-repeat;
     width: 35px;
     height: 35px;
     margin: 0 auto;
@@ -314,8 +321,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 25px;
     border: 1px solid white;
     margin: 10px auto;
-    position: relative; 
-  
+    position: relative;
 }
 .main-article-arrow::before {
     content: '';
@@ -355,11 +361,12 @@ input[type="number"]::-webkit-inner-spin-button {
     position: relative;
 }
 .filters-btn:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 16px;
     right: 0;
-    border: 8px solid transparent; border-top: 8px solid black;
+    border: 8px solid transparent;
+    border-top: 8px solid black;
     transition: 500ms;
 }
 .filters-btn:hover:before {
@@ -384,7 +391,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .pagination > div {
-    border: 1px solid black;    
+    border: 1px solid black;
     height: 35px;
     width: 35px;
     background: black;
@@ -405,7 +412,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .item-photo-card img {
     width: 500px;
-    height: 500px;    
+    height: 500px;
 }
 .square {
     width: 30px;
@@ -419,15 +426,15 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     align-items: center;
 }
-.basket-photo img{
+.basket-photo img {
     width: 100px;
-    height: 100px; 
+    height: 100px;
 }
 
 select {
     -moz-appearance: none;
     -webkit-appearance: none;
-    background: none;    
+    background: none;
     outline: none;
     border: 1px solid black;
     padding: 10px;
@@ -441,11 +448,12 @@ select {
     position: relative;
 }
 .select-before:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 65px;
     right: 20px;
-    border: 8px solid transparent; border-top: 8px solid black;
+    border: 8px solid transparent;
+    border-top: 8px solid black;
     transition: 500ms;
     display: block;
 }
@@ -454,15 +462,28 @@ select {
 }
 
 .arrow-down {
-    background: url('/img/arrow-down.svg') ;
+    background: url('/img/arrow-down.svg');
     height: 20px;
     width: 20px;
 }
 .good-delete-icon {
     background: url('/img/icons/close.svg') center center / contain no-repeat;
+    width: 14px;
+    height: 14px;
+    z-index: 0;
+}
+
+.quantity {
     width: 15px;
     height: 15px;
-    z-index: 0;
+    margin: 5px;
+    cursor: pointer;
+}
+.quantity-plus {
+    background: url(/img/icons/plus-sign.svg) center center / contain no-repeat;
+}
+.quantity-minus {
+    background: url(/img/icons/minus-sign.svg) center center / contain no-repeat;
 }
 
 /*блок форма авторизации и регистрации*/
@@ -472,11 +493,11 @@ select {
     border: 1px solid orange;
     box-sizing: border-box;
 }
-[type="text"],
-[type="password"],
-[type="email"],
-[type="number"],
-[type="tel"] {
+[type='text'],
+[type='password'],
+[type='email'],
+[type='number'],
+[type='tel'] {
     border: 1px solid black;
     padding: 10px;
     margin: 10px;

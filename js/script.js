@@ -15,26 +15,26 @@ function renderGoods() {
     xhr.setRequestHeader('content-type', 'application/x-form-urlencode');
 
     //при получении ответа на запрос
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         //если ответ положительный
-        if(xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             //alert('Ok');
             //делаем с ответом то что нам надо - ответ лежит в свойстве responseText этого объекта,т.е. верстка из .../catalog/index.php
             document.getElementById('catalog').innerHTML = xhr.responseText;
         }
-    }
+    };
 
     xhr.send(null);
 }
 
 //показ гифки предзагрузки пока работает задержка времени для старта функции renderGoods
 document.getElementById('catalog').innerHTML = `
-                                                    <div class="flex-box justify-content-center">
-                                                        <img src="/img/preloader.gif"/>
-                                                    </div>
-                                                `;
+                                    <div class="flex-box justify-content-center">
+                                        <img src="/img/preloader.gif"/>
+                                    </div>
+                                `;
 //задержка времени перед стартом функции renderGoods
-setTimeout(function() {
+setTimeout(function () {
     renderGoods();
 }, 500);
 
@@ -43,7 +43,7 @@ let listObj = document.getElementsByClassName('filters-btn');
 //console.log(listObj);
 
 for (let i = 0; i < listObj.length; i++) {
-    listObj[i].addEventListener('click', function() {
+    listObj[i].addEventListener('click', function () {
         let open = document.querySelectorAll('.display-none');
         //console.log(open);
         open[i].classList.toggle('display-block');
@@ -65,21 +65,21 @@ function toBasket() {
     xhr.open('GET', url, true);
 
     //при получении ответа на запрос
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         //если ответ положительный
-        if(xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             //alert('Ok');
             //делаем с ответом то что нам надо - ответ лежит в свойстве responseText этого объекта,т.е. верстка из .../catalog/index.php
             //alert(xhr.responseText);
-            document.getElementById('basket-count').innerHTML = xhr.responseText;
+            document.getElementById('basket-count').innerHTML =
+                xhr.responseText;
         }
-    }
+    };
 
     xhr.send(null);
 }
 
 function fromBasket() {
-
     //получаем id товара
     let id = event.target.getAttribute('data-id');
 
@@ -99,22 +99,24 @@ function fromBasket() {
     xhr.open('GET', url, true);
 
     //при получении ответа на запрос
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         //если ответ положительный
-        if(xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             //alert('Ok');
             //делаем с ответом то что нам надо - ответ лежит в свойстве responseText этого объекта,т.е. верстка из .../catalog/index.php
             //alert(xhr.responseText);
-            document.getElementById('basket-count').innerHTML = xhr.responseText;
+            //console.log(xhr.responseText);
+            document.getElementById('basket-count').innerHTML =
+                xhr.responseText;
             //document.getElementById('summa').innerHTML = xhr.responseText;
         }
-    }
+    };
 
     xhr.send(null);
 }
 
 //AJAX запрос для получения массива данных для отображения меток на картах яндекс и гугл
-function getShops () {
+function getShops() {
     // создание нового экземпляра класса для запросов
     let xhr = new XMLHttpRequest();
 
@@ -133,32 +135,37 @@ function getShops () {
 }
 
 //изменение суммы товаров в корзине при удалении товаров из корзины и при изменении способа доставки
-function getSumm () {
-
+function getSumm() {
     // создание нового экземпляра класса для запросов
     let xhr = new XMLHttpRequest();
 
-     //запуск метода open() для установки параметров запроса (метод GET, куда - HTTP....., если true - то запрос асинхронный, иначе запрос синхронный)
-    xhr.open('GET', 'http://project_2/system/controllers/basket/get_summ.php', true);
+    //запуск метода open() для установки параметров запроса (метод GET, куда - HTTP....., если true - то запрос асинхронный, иначе запрос синхронный)
+    xhr.open(
+        'GET',
+        'http://project_2/system/controllers/basket/get_summ.php',
+        true
+    );
 
     //при получении ответа на запрос
-    xhr.onreadystatechange = function() {
-
-        //если ответ положительный     
-        if (xhr.readyState == 4 && xhr.status == 200)  {
+    xhr.onreadystatechange = function () {
+        //если ответ положительный
+        if (xhr.readyState == 4 && xhr.status == 200) {
             //alert(xhr.responseText);
-            //и не равен - 0   
-            if (Number(xhr.responseText) != 0) {           
-
-                let indexSelect = document.getElementById('delivery-select').options.selectedIndex;
+            //и не равен - 0
+            if (Number(xhr.responseText) != 0) {
+                let indexSelect = document.getElementById('delivery-select')
+                    .options.selectedIndex;
                 let priceDelivery = 500;
 
-                //заменяю сумму 
-                document.getElementById('summ-one').innerHTML = xhr.responseText + ' руб.';
-                document.getElementById('summ-two').innerHTML = xhr.responseText + ' руб.';
+                //заменяю сумму
+                document.getElementById('summ-one').innerHTML =
+                    xhr.responseText + ' руб.';
+                document.getElementById('summ-two').innerHTML =
+                    xhr.responseText + ' руб.';
                 if (indexSelect == 0) {
-                    document.getElementById('summ-total').innerHTML = Number(xhr.responseText) + priceDelivery + ' руб.';
-                    document.getElementById('delivery-price'). innerHTML = '';
+                    document.getElementById('summ-total').innerHTML =
+                        Number(xhr.responseText) + priceDelivery + ' руб.';
+                    document.getElementById('delivery-price').innerHTML = '';
                     document.getElementById('delivery-price-ajax').innerHTML = `
                                                                     <div id="delivery-price" class="flex-box justify-content-center">
                                                                         <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
@@ -166,8 +173,9 @@ function getSumm () {
                                                                     </div>
                                                                 `;
                 } else {
-                    document.getElementById('summ-total').innerHTML = xhr.responseText + ' руб.';
-                    document.getElementById('delivery-price'). innerHTML = '';
+                    document.getElementById('summ-total').innerHTML =
+                        xhr.responseText + ' руб.';
+                    document.getElementById('delivery-price').innerHTML = '';
                     document.getElementById('delivery-price-ajax').innerHTML = `
                                                                     <div id="delivery-price" class="flex-box justify-content-center">
                                                                         <p class="margin-0 padding-5 width-45 text-align-end">Доставка:</p>
@@ -175,18 +183,18 @@ function getSumm () {
                                                                     </div>
                                                                 `;
                 }
-                        
             } else {
                 //убираю и заменяю элементы со страницы
                 document.getElementById('reset').innerHTML = '';
-                document.getElementById('summ-one-block').innerHTML = 'Ваша корзина пуста';
+                document.getElementById('summ-one-block').innerHTML =
+                    'Ваша корзина пуста';
                 document.getElementById('basket-delete').innerHTML = '';
                 document.getElementById('summ-two-block').innerHTML = '';
                 document.getElementById('delivery-price').innerHTML = '';
                 document.getElementById('summ-total-block').innerHTML = '';
             }
         }
-    }
+    };
 
     xhr.send(null);
 }

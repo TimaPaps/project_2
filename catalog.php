@@ -54,9 +54,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
             <div class="filters-btn">Размер</div>
             <div class="display-none z-index-1">
                 <ul>
-                    <li><a href="?type_id=1 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Куртки</a></li>
-                    <li><a href="?type_id=2 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Джинсы</a></li>
-                    <li><a href="?type_id=3 <?= isset($_GET['category_id']) ? '&category_id=' . $_GET['category_id'] : '' ?>">Обувь</a></li>
+                    <li><a href="#">S</a></li>
+                    <li><a href="#">M</a></li>
+                    <li><a href="#">L</a></li>
                 </ul>
             </div>
         </div>
@@ -64,10 +64,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
             <div class="filters-btn">Стоимость</div>
             <div class="display-none z-index-1 text-14px">
                 <ul>
-                    <li><a href="">0-1000 руб.</a></li>
-                    <li><a href="">1000-3000 руб.</a></li>
-                    <li><a href="">3000-6000 руб.</a></li>
-                    <li><a href="">6000-20000 руб.</a></li>
+                    <li><a href="#">0-1000 руб.</a></li>
+                    <li><a href="#">1000-3000 руб.</a></li>
+                    <li><a href="#">3000-6000 руб.</a></li>
+                    <li><a href="#">6000-20000 руб.</a></li>
                 </ul>
             </div>
         </div>

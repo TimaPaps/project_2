@@ -6,7 +6,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 
 ?>
-<div class="wrapper flex-box text-align-center">
+<div class="wrapper margin-50-auto flex-box text-align-center">
     <form class="form" action="../../system/controllers/users/reg.php" method="GET">
         <div>
             <input type="text" name="login" id="" placeholder="Логин">
