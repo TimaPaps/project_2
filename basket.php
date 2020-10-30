@@ -100,9 +100,7 @@ $summ = 0;
     <div class="flex-box justify-content-center margin-40">
 
         <?php for ($i = 0; $i < 3; $i++): ?>
-
             <div class="arrow-down"></div>
-
         <?php endfor; ?>
 
     </div>
@@ -162,15 +160,12 @@ $summ = 0;
         <div class="flex-box justify-content-center margin-40">
 
             <?php for ($i = 0; $i < 3; $i++): ?>
-
                 <div class="arrow-down"></div>
-
             <?php endfor; ?>
 
         </div>
         <div class="text-align-center margin-bottom-40">
             <h2 class="text-up h2-32px">Варианты оплаты</h2>
-            <!--<p class="text-i">Все поля обязательны для заполнения</p>-->
         </div>
         <div class="flex-box justify-content-center">
             <div class="width-100">

@@ -5,10 +5,12 @@
             <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
             <?php
+
                 require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
                 include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
                 include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
                 require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
+                
             ?>
 
             <script
@@ -51,25 +53,19 @@
 
                 //в цикле перебираем массивы для подставления координат в метки и вывода меток на карту
                 for (let i = 0; i < points.length; i++) {
-                    //console.log(points[i].title);
                     let a = Number(points[i].latitude);
                     let b = Number(points[i].longitude);
-
-                    //console.log(a);
-                    //console.log(b);
 
                     //создание метки и добавление метки на карту
                     let marker = new google.maps.Marker({position: {lat: a, lng: b}, map: map});
 
-                    //ручное создание метки
-                    //let marker = new google.maps.Marker({position: {lat: 55.045, lng: 60.108}, map: map});
                     let contentString =
-                        `<h1 id="firstHeading" class="firstHeading"> ${points[i].title} </h1>` +
-                   
-                        `<p> ${points[i].adress} </p>` +
-                        `<p> ${points[i].description}, <a href="http://project_2/index.php">` +
-                        "Наш сайт</a> " +
-                        `<div><img class="geo-photo-size" src=" ${points[i].photo} "/></div>`;
+                                        `<h1 id="firstHeading" class="firstHeading"> ${points[i].title} </h1>` +
+                                
+                                        `<p> ${points[i].adress} </p>` +
+                                        `<p> ${points[i].description}, <a href="http://project_2/index.php">` +
+                                        "Наш сайт</a> " +
+                                        `<div><img class="geo-photo-size" src=" ${points[i].photo} "/></div>`;
 
                     const infowindow = new google.maps.InfoWindow({
                         content: contentString,
@@ -86,9 +82,13 @@
 
     <body class="wrapper">
         <div id="map"></div>
+
         <?php
+
             include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
         ?>
+
     </body>
   
 </html>

@@ -2,17 +2,15 @@
 
 session_start();
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
-    //include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 
-    $user = new \Project\Core\User($_COOKIE['user_id']);
+$user = new \Project\Core\User($_COOKIE['user_id']);
 
-    if ($user->getField('user_group') != 2) {
-        header('Location: http://project_2/catalog.php');
-    }
-//var_dump($user);
-//var_dump($user->login());
+if ($user->getField('user_group') != 2) {
+    header('Location: http://project_2/catalog.php');
+}
+
 ?>
 
 <!doctype html>
@@ -22,21 +20,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Пример на bootstrap 4: Базовая панель администратора с фиксированной боковой панелью и навигационной панелью.">
 
-    <title>Панель администратора | Dashboard Template for Bootstrap</title>
+    <title>Панель администратора</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
-<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
-<meta name="theme-color" content="#563d7c">
-
 
     <style>
       .bd-placeholder-img {
@@ -54,34 +41,10 @@ session_start();
         }
       }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
 
   </head>
 
   <body>
-
-<script defer>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-4481610-59', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(39705265, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/39705265" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-8588635311388465",
-    enable_page_level_ads: true
-  });
-</script>
-
 
 <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">My second <br> web-project</a>
@@ -129,6 +92,7 @@ session_start();
 
 <!--создание нового товара-->
       <? if (isset($_GET['new'])) { ?>
+
         <form action="/system/controllers/goods/create.php" method="POST" enctype="multipart/form-data" style="width: 80%">
           <div class="form-group">
             <input type="text" class="form-control margin-0-important" name="title" placeholder="Название товара" >
@@ -169,7 +133,8 @@ session_start();
             <button type="submit" class="btn btn-primary">Создать товар</button>
           </div>          
         </form>
- <!--изменение существующего в БД товара-->        
+        
+      <!--изменение существующего в БД товара-->        
       <? } elseif (isset($_GET['change'])) { ?>
 
         <? $good = new \Project\Core\Good($_GET['id']); ?>
@@ -193,7 +158,7 @@ session_start();
             <input type="file" class="form-control" name="photo" style="border: none;">
           </div>
 
-<!--//ручное создание ассоциативного массива-->
+      <!--ручное создание ассоциативного массива-->
           <? $category = new \Project\Core\Category($good->getField('category_id')) ?>
           
           <? $arr_category = [  
@@ -201,20 +166,22 @@ session_start();
             '2' => 'Мужчинам',
             '3' => 'Детям'
           ] ?>
-           <? //var_dump($arr_category); ?>
+
           <div class="form-group">
             <label for="exampleFormControlSelect1">Категория</label>
             <select class="form-control" name="category_id">
               <option value="<?= $category->getField('id') ?>"><?= $category->getField('title') ?></option>
+
               <? foreach ($arr_category as $key => $value) { ?>
                 <? if ($key != $category->getField('id')) { ?>
                   <option value="<?= $key ?>"><?= $value ?></option>
                 <? } ?>
               <? } ?>
+
             </select>
           </div>
 
-<!--автоматическое создание ассоциативного массива-->
+      <!--автоматическое создание ассоциативного массива-->
           <? $type = new \Project\Core\Type($good->getField('type_id')) ?>
 
           <?php
@@ -223,27 +190,28 @@ session_start();
 
           //запрос к DB
           $result = mysqli_query($connect->getConnection(), "SELECT * FROM item_types " );
-          //var_dump($result);
           $arr_type = [];
+
           //создание ассоциативного массива с данными из DB
           while ($row = mysqli_fetch_assoc($result)) {
             $arr_type[$row['id']] = $row['title'];
-          }                    
-          //var_dump($arr_type);
+          }  
+
           ?>
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Тип товара</label>
             <select class="form-control" name="type_id">
               <option value="<?= $type->getField('id') ?>"><?= $type->getField('title') ?></option>
+
               <? foreach ($arr_type as $key => $value) { ?>
                 <? if ($key != $type->getField('id')) { ?>
                   <option value="<?= $key ?>"><?= $value ?></option>
                 <? } ?>
               <? } ?>
+
             </select>
           </div>
-
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Описание товара</label>
             <textarea class="form-control" name="description" rows="3"><?= $good->getField('description'); ?></textarea>
@@ -256,12 +224,14 @@ session_start();
             <button type="submit" class="btn btn-primary">Сохранить</button>
           </div>          
         </form>
+
       <? } else { ?>
 
       <? } ?>
 
 <!--создание нового клиента-->
       <? if (isset($_GET['new-user'])) { ?>
+
         <form action="/system/controllers/users/create.php" method="POST" enctype="multipart/form-data" style="width: 80%">
           <div class="form-group">
             <input type="text" class="form-control margin-0-important" name="login" placeholder="Логин пользователя" >
@@ -272,7 +242,6 @@ session_start();
           <div class="form-group">
             <input type="password" class="form-control" name="password" placeholder="Пароль пользователя">
           </div>
-
           <div class="form-group">
             <label for="exampleFormControlSelect1">Группа пользователей</label>
             <select class="form-control" name="user_group">
@@ -280,19 +249,19 @@ session_start();
               <option value="2">Менеджер</option>
             </select>
           </div>
-
           <div>
             <button type="submit" class="btn btn-primary">Создать Клиента</button>
           </div>          
         </form>
-<!--изменение существующего клиента-->        
+
+      <!--изменение существующего клиента-->        
       <? } elseif (isset($_GET['change-user'])) { ?>
 
         <? $user = new \Project\Core\User($_GET['id']); ?>
 
         <form action="/system/controllers/users/update.php" method="POST" enctype="multipart/form-data" style="width: 80%">
 
-          <!--скрытое поле для передачи данных в какой таблице по какому id изменить товар-->
+          <!--скрытое поле для передачи данных в какой таблице по какому id изменить клиента-->
           <input type="hidden" name="id" value="<?= $user->getField('id') ?>">
 
           <div class="form-group">
@@ -305,7 +274,7 @@ session_start();
             <input type="password" class="form-control" name="password" value="<?= $user->getField('password') ?>">
           </div>
 
-<!--автоматическое создание ассоциативного массива-->
+      <!--автоматическое создание ассоциативного массива-->
           <? $userGroup = new \Project\Core\UserGroup($user->getField('user_group')) ?>
 
           <?php
@@ -314,38 +283,40 @@ session_start();
 
           //запрос к DB
           $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_user_groups " );
-          //var_dump($result);
+
           $arr_userGroup = [];
+
           //создание ассоциативного массива с данными из DB
           while ($row = mysqli_fetch_assoc($result)) {
             $arr_userGroup[$row['id']] = $row['title'];
           }                    
-          //var_dump($arr_type);
           ?>
-
+          
           <div class="form-group">
             <label for="exampleFormControlSelect1">Группа пользователей</label>
             <select class="form-control" name="user_group">
               <option value="<?= $userGroup->getField('id') ?>"><?= $userGroup->getField('title') ?></option>
+
               <? foreach ($arr_userGroup as $key => $value) { ?>
                 <? if ($key != $userGroup->getField('id')) { ?>
                   <option value="<?= $key ?>"><?= $value ?></option>
                 <? } ?>
               <? } ?>
+
             </select>
           </div>
-
           <div>
             <button type="submit" class="btn btn-primary">Изменить Клиента</button>
           </div>          
         </form>
+
       <? } else {?>
 
       <? } ?>
 
-
 <!--страница Товары-->
       <? if (isset($_GET['page']) && $_GET['page'] == 'items') { ?>
+      
         <div>
           <a href="?new=item" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить товар</a>
         </div>
@@ -371,11 +342,11 @@ session_start();
 
                   //запрос к DB
                   $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_goods " );
+
                   //создание ассоциативного массива с данными из DB и вывод товаров в цикле
                   while ($info = mysqli_fetch_assoc($result)) { 
                     $category = new \Project\Core\Category($info['category_id']);
-                    $type = new \Project\Core\Type($info['type_id']);
-                    
+                    $type = new \Project\Core\Type($info['type_id']);                    
                     ?>
                     <tr>
                         <td><?= $info['id'] ?></td>
@@ -391,15 +362,18 @@ session_start();
                         <td><?= $type->getField('title') ?></td>
                         <td><?= $info['is_new'] != 0 ? 'новинка' : '' ?></td>
                     </tr>
-                  <? } ?>                
+                  <? } ?>     
+
             </tbody>
           </table>
         </div>
         <div>
           <a href="?new=item" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить товар</a>
         </div>
+
 <!--страница Клиенты-->        
       <? } elseif (isset($_GET['page']) && $_GET['page'] == 'users') { ?>
+
         <div>
           <a href="?new-user=user" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить Клиента</a>
         </div>
@@ -421,10 +395,10 @@ session_start();
 
                   //запрос к DB
                   $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_users " );
+
                   //создание ассоциативного массива с данными из DB и вывод товаров в цикле
                   while ($info = mysqli_fetch_assoc($result)) { 
                     $group = new \Project\Core\UserGroup($info['user_group']);
-
                     ?>
                       <tr>
                           <td><?= $info['id'] ?></td>
@@ -436,15 +410,18 @@ session_start();
                           <td><?= $info['email'] ?></td>
                           <td><?= $group->getField('title') ?></td>
                       </tr>
-                  <? } ?>              
+                  <? } ?>
+
             </tbody>
           </table>
         </div>
         <div>
           <a href="?new-user=user" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить Клиента</a>
         </div>
+
 <!--страница Заказы-->        
         <? } elseif (isset($_GET['page']) && $_GET['page'] == 'orders') { ?> 
+
           <h2>Заказы</h2>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
@@ -467,7 +444,7 @@ session_start();
 
                     //запрос к DB
                     $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_orders " );
-                    //var_dump($result);
+
                     //создание ассоциативного массива с данными из DB
                     while ($info = mysqli_fetch_assoc($result)) {
                         $status = new \Project\Core\Status($info['order_status']);
@@ -491,9 +468,11 @@ session_start();
                             <td><?= $info['last_update'] != 0 ? date('d-m-Y в H:i', $info['last_update']) : 'не просмотрено' ?></td>
                         </tr>
                     <? } ?>
+
               </tbody>
             </table>
           </div>
+
         <? } else { ?>
 
       <? } ?>
@@ -502,11 +481,5 @@ session_start();
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-        <script src="dashboard.js"></script>
 </body>
 </html>

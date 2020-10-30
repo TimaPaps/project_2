@@ -15,11 +15,13 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
         <div>
             <input required type="password" name="password" placeholder="Пароль">
         </div>
+
         <?php if (isset($_GET['wrong'])): ?>
             <div class="padding-5 text-red">
                 Неверный логин или пароль
             </div>
         <?php endif; ?>
+        
         <div class="padding-10">
             <button class="btn-10-30-orange">Войти</button>
         </div>
@@ -31,5 +33,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 </div>
 
 <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
+include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
 ?>

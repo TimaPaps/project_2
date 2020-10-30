@@ -1,31 +1,33 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 
-    echo "можно было оботись без трейта, но для практики сделал трейт, но один со всеми четырьмя методами(не стал плодить трейты)";
-    echo '<br><br>';
+include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 
-    $dog = new \Project\Test\Dog();
-    echo "я собака: ";
-    $dog->run();
-    $dog->sleep();
-    $dog->eat();
-    $dog->jump();
+echo "можно было оботись без трейта, но для практики сделал трейт, но один со всеми четырьмя методами(не стал плодить трейты)";
+echo '<br><br>';
 
-    echo '<br>';
+$dog = new \Project\Test\Dog();
+echo "я собака: ";
+$dog->run();
+$dog->sleep();
+$dog->eat();
+$dog->jump();
 
-    $cat = new \Project\Test\Cat();
-    echo "я кошка: ";
-    $cat->run();
-    $cat->sleep();
-    $cat->eat();
-    $cat->jump();
+echo '<br>';
 
-    echo '<br>';
+$cat = new \Project\Test\Cat();
+echo "я кошка: ";
+$cat->run();
+$cat->sleep();
+$cat->eat();
+$cat->jump();
 
-    $pig = new \Project\Test\Pig();
-    echo "я порося: ";
-    $pig->run();
-    $pig->sleep();
-    $pig->eat();
-    $pig->jump();
+echo '<br>';
+
+$pig = new \Project\Test\Pig();
+echo "я порося: ";
+$pig->run();
+$pig->sleep();
+$pig->eat();
+$pig->jump();
+
 ?>

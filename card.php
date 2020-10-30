@@ -5,15 +5,15 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 
-    $good = new \Project\Core\Good($_GET['id']);
+$good = new \Project\Core\Good($_GET['id']);
 
-    //создание фильтра по колонке category_id из таблицы core_goods и таблицы categories с использованием класса Category 
-    $category = new \Project\Core\Category($good->getField('category_id'));
-    $cat_name = $category->getField('title');
+//создание фильтра по колонке category_id из таблицы core_goods и таблицы categories с использованием класса Category 
+$category = new \Project\Core\Category($good->getField('category_id'));
+$cat_name = $category->getField('title');
 
-    //создание фильтра по колонке type_id из таблицы core_goods и таблицы item_types с использованием класса Type
-    $type = new \Project\Core\Type($good->getField('type_id'));
-    $type_name = $type->getField('title');
+//создание фильтра по колонке type_id из таблицы core_goods и таблицы item_types с использованием класса Type
+$type = new \Project\Core\Type($good->getField('type_id'));
+$type_name = $type->getField('title');
 
 ?>
 
@@ -42,23 +42,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
     <div onclick="toBasket()" class="margin-40 btn-10-30-orange">добавить в корзину</div>
 </div> 
 
-<!--
-<div class="wrapper nav padding-30 text-up text-12px"><a class="text-12" href="index.php">Главная</a> / <a  href="catalog.php">Каталог</a> / </div>
-<div class="text-align-center">
-    <div class="wrapper card-background-gray"></div>
-    <div class="">
-        <h1>Кеды с полоской</h1>
-        <p>Артикул: 112233</p>
-        <p>4500 руб.</p>
-        <p>Отличные кеды из водонепроницаемого материала. Отличноподходят для любой погоды <br>
-            приятно сидят на ноге, стильные и комфортные</p>
-        <p>размер</p>
-        <div></div>
-        <input type="submit" value="добавить в корзину">
-    </div>
-</div>
--->
-
 <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
+include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
 ?>

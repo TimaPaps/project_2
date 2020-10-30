@@ -11,7 +11,6 @@ if (isset($_SESSION['basket'])) { //если корзина не пустая - 
 
 //получаем id товара
 if ($id = $_GET['id']) {
-
     //если в корзине нет товара то добавляем этот товар в корзину
     if (!in_array($id, $basket)) {
         $basket[] = $id;
@@ -19,13 +18,9 @@ if ($id = $_GET['id']) {
 
     //запись в сессию
     $_SESSION['basket'] = $basket;
-    //var_dump($_SESSION['basket']);
 
     //выводим количество товаров на экран
     echo count($_SESSION['basket']);
 }
-
-//очищение корзины
-//$_SESSION['basket'] = null;
 
 ?>

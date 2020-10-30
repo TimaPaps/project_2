@@ -6,6 +6,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 
 ?>
+
 <div class="wrapper margin-50-auto flex-box text-align-center">
     <form class="form" action="../../system/controllers/users/reg.php" method="GET">
         <div>
@@ -28,5 +29,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
 </div>
 
 <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
+include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
 ?>

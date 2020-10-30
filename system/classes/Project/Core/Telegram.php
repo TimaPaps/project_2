@@ -24,6 +24,6 @@ class Telegram {
     function sendLocation($id, $latitude, $longitude) {
         file_get_contents("http://api.telegram.org/$this->token/sendLocation?chat_id=$id&latitude=$latitude&longitude=$longitude");
     }
-
 }
+
 ?>

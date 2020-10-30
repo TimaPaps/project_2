@@ -2,10 +2,6 @@
 
 session_start();
 
-//var_dump($_POST);
-
-//var_dump($_FILES);
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
 
@@ -49,8 +45,6 @@ $str_values = implode(',', $arr_values);
 //подключение файла
 $connect = new \Project\Core\Connect();
 
-//echo "INSERT INTO core_goods($str_fields) VALUES($str_values) ";
-
 $result = mysqli_query($connect->getConnection(), "INSERT INTO core_goods($str_fields) VALUES($str_values) "); //при автоматическом получении данных полей формы
 
 if ($result) {
@@ -58,6 +52,6 @@ if ($result) {
     header('Location: http://project_2/admin/index.php?page=items');
 } else {
     echo 'что то пошло не так, поля: Название товара, Артикул, Цена - обязательны для заполнения';
-    //var_dump ($result);
 }
+
 ?>

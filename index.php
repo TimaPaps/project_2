@@ -2,25 +2,15 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
-/*
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Connect.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/UnitActions.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Unit.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/ShowArticleInfo.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/Article.php');
-*/
-/*
-//формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB)
-    $connect = new Connect();
-    $result = mysqli_query($connect->getConnection(), "SELECT * FROM `core_articles`");
-*/
 
 //формирование sql запроса к DB (использование ключа($link) для проброса запроса в DB используя метод getElements из Unit.php)
 $result = (new \Project\Core\Article())->getElements();
 
-    include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/components/head_doctype.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/components/header/index.php');
+
 ?>
+
 <body>
     <main class="wrapper">
         <div class="text-align-center margin-top-60 nav">
@@ -29,6 +19,7 @@ $result = (new \Project\Core\Article())->getElements();
             <a class="btn-10-30 margin-top-40" href="catalog.php?is_new=1">посмотреть новинки</a>
         </div>
         <div class="flex-box flex-wrap article-column margin-top-30">
+
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <?php
                     $article = new \Project\Core\Article($row['id']);
@@ -56,6 +47,7 @@ $result = (new \Project\Core\Article())->getElements();
                     </div>
                 </div>   
             <?php endwhile; ?>
+
         </div>
         <div class="text-align-center margin-top-100">
             <h2>БУДЬ ВСЕГДА В КУРСЕ ВЫГОДНЫХ ПРЕДЛОЖЕНИЙ</h2>
@@ -67,22 +59,28 @@ $result = (new \Project\Core\Article())->getElements();
                 <input type="submit" value="подписаться!">
             </form>
         </div>
+
         <?php if (isset($_GET['wrong'])): ?>
             <div class="padding-5 text-align-center text-i-red">
                 Некорректный e-mail. Попробуйте еще раз.
             </div>
         <?php endif; ?>
+
         <?php if (isset($_GET['inDatabase'])): ?>
             <div class="padding-5 text-align-center text-i-red">
                 Такой email уже получает рассылки нашего магазина
             </div>
         <?php endif; ?>
+
         <?php if (isset($_GET['success'])): ?>
             <div class="padding-5 text-align-center text-i-red">
                 Поздравляем, Вы успешно подписались!
             </div>
         <?php endif; ?>
+
     </main>
 <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
+include($_SERVER['DOCUMENT_ROOT'] . '/components/footer/index.php');
+
 ?>

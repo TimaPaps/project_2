@@ -2,18 +2,16 @@
 
 namespace Project\Test;
 
-class Beer 
-{
+class Beer {
+    
     const NAME = 'Beer';
 
-    public function getName()
-    {
+    public function getName() {
         return self::NAME;
     }
-    public function getStaticName()
-    {
+    public function getStaticName() {
         return static::NAME;
     }
-
 }
+
 ?>

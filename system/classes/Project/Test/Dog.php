@@ -1,4 +1,5 @@
 <?php
+
 namespace Project\Test;
 
 class Dog extends \Project\Test\Animal implements \Project\Interfaces\Run, 
@@ -7,4 +8,5 @@ class Dog extends \Project\Test\Animal implements \Project\Interfaces\Run,
                                                     \Project\Interfaces\Jump {
    
 }
+
 ?>

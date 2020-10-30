@@ -15,6 +15,7 @@ $user_group = $_POST['user_group'];
 
 //подключаемся к БД и записываем
 $connect = new \Project\Core\Connect();
+
 //проверка на наличие в БД таких логинов или паролей
 $result = mysqli_query($connect->getConnection(), "SELECT COUNT(id) as num FROM core_users WHERE login='$login' OR email='$email' ");
 $info = mysqli_fetch_assoc($result);
@@ -25,7 +26,6 @@ if ($amount > 0) {
 } else {
     //создаем новую строчку в таблице
     mysqli_query($connect->getConnection(), "INSERT INTO core_users(login, email, password, user_group) VALUES('$login', '$email', '$password', '$user_group') ");
-    //echo "Вы успешно зарегистрировались!";
     header('location: http://project_2/admin/index.php?page=users');
 }
 

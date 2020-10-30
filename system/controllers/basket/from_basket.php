@@ -26,7 +26,6 @@ if ($id = $_GET['id']) {
 
     //запись в сессию
     $_SESSION['basket'] = $basket;
-    //var_dump($_SESSION['basket']);
 
     //выводим количество товаров на экран
     echo count($_SESSION['basket']);

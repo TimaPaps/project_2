@@ -1,16 +1,8 @@
 <?php
 
 session_start();
-//var_dump($_POST);
-
-//var_dump($_FILES);
 
 $id = (int)$_POST['id'];
-/*
-var_dump($id);
-$pass = $_POST['password'];
-var_dump($pass);
-*/
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config/db_config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/system/classes/autoload.php');
@@ -20,8 +12,6 @@ $connect = new \Project\Core\Connect();
 
 $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_users WHERE id=$id ");
 $user = mysqli_fetch_assoc($result);
-
-//var_dump($user['password']);
 
 //автоматическое получение данных из полей формы 
 //подготовка массивов полей и значений
@@ -56,10 +46,6 @@ foreach ($_POST as $key => $value) {
     }   
 }
 
-
-//var_dump($arr_fields);
-//var_dump($arr_values);
-
 //сборка строки для подстановки в запрос
 $str_update = '';
 
@@ -76,14 +62,11 @@ $connect = new \Project\Core\Connect();
 echo "UPDATE core_users SET $str_update WHERE id=$id  ";
 
 $result = mysqli_query($connect->getConnection(), "UPDATE core_users SET $str_update WHERE id=$id "); //при автоматическом получении данных полей формы
-var_dump($result);
 
 if ($result) {
-    //echo 'Клиент изменен';
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
     echo 'что то пошло не так';
-    //var_dump ($result);
 }
 
 ?>

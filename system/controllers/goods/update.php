@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-//var_dump($_POST);
 
 var_dump($_FILES);
 
@@ -47,7 +46,6 @@ if ($_FILES['photo']['name']) {
     $arr_values[] = "'" . $file_full_path . "'"; 
 }
 
-//
 $str_update = '';
 
 for ($i = 0; $i < count($arr_fields); $i++) {
@@ -65,10 +63,9 @@ echo "UPDATE core_goods SET $str_update WHERE id=$id  ";
 $result = mysqli_query($connect->getConnection(), "UPDATE core_goods SET $str_update WHERE id=$id "); //при автоматическом получении данных полей формы
 
 if ($result) {
-    //echo 'Товар создан';
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
     echo 'что то пошло не так';
-    //var_dump ($result);
 }
+
 ?>

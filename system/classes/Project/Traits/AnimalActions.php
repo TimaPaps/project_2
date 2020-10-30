@@ -1,7 +1,9 @@
 <?php
+
 namespace Project\Traits;
 
 trait AnimalActions {
+    
     function run() {
         echo "я обожаю бегать! ";
     }
@@ -15,4 +17,5 @@ trait AnimalActions {
         echo "я умею прыгать!";
     }
 }
+
 ?>

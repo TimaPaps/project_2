@@ -7,8 +7,8 @@ $connect = new \Project\Core\Connect();
 
 //запрос к DB
 $result = mysqli_query($connect->getConnection(), "SELECT * FROM core_shops " );
-//var_dump($result);
 $arr = [];
+
 //создание ассоциативного массива с данными из DB
 while ($info = mysqli_fetch_assoc($result)) {
     //наполнение ассоциативного массива в ручную

@@ -12,9 +12,8 @@ if (isset($_SESSION['basket'])) {
         $good = new \Project\Core\Good($id);
         $summ += $good->price();
    }
-
-echo $summ;
-
+   
+    echo $summ;
 }
 
 ?>

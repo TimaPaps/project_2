@@ -1,4 +1,5 @@
 <?php
+
 namespace Library;
 
 class Good {
@@ -6,4 +7,5 @@ class Good {
         echo 'Вывожу какую-нибудь инфу';
     }
 }
+
 ?>

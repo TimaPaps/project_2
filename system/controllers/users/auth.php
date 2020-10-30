@@ -22,19 +22,16 @@ if ($user['id']) {
             //редирект
             header('location: http://project_2/admin/index.php?page=orders');
         } else {
-            //echo "Вы успешно авторизовались " . $user['login'];
             //создание куки со сроком жизни 1 час
             setcookie('user_id', $user['id'], time() + 3600, '/');
             //редирект
             header('location: http://project_2/catalog.php'); 
         }       
     } else {
-        //echo "Неверный логин или пароль!";
         //редирект
         header('location: ' . $_SERVER['HTTP_REFERER'] . '?wrong=1');
     }
 } else {
-    //echo "Неверный логин или пароль!";
     //редирект
     header('location: ' . $_SERVER['HTTP_REFERER'] . '?wrong=1');
 }
